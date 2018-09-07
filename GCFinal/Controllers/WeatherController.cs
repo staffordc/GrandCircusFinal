@@ -1,12 +1,27 @@
 ﻿using GCFinal.Domain.Data;
 using System.Collections.Generic;
 using System.Web.Http;
+using GCFinal.Services;
+using System;
+using GCFinal.Domain.Models;
+using System.Threading.Tasks;
 
 namespace GCFinal.Controllers
 {
     public class WeatherController : ApiController
     {
         private readonly IWeatherService _weatherService;
+
+        public WeatherController()
+        {
+            _weatherService = new WeatherService();
+        }
+
+        [HttpGet]
+        public async Task<ForecastDay> GetWeatherAsync(string location, DateTime startDate, int duration)
+        {
+            return await _weatherService.GetWeatherAsync(location, startDate, duration);
+        }
 
         // GET: api/Weather
         public IEnumerable<string> Get()
