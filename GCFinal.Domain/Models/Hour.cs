@@ -1,8 +1,11 @@
-﻿namespace GCFinal.Domain.Models
+﻿using Newtonsoft.Json;
+
+namespace GCFinal.Domain.Models
 {
     public class Hour
     {
-        public int time_epoch { get; set; }
+        [JsonProperty("time_epoch")]
+        public int TimeEpoch { get; set; }
         public string time { get; set; }
         public double temp_c { get; set; }
         public double temp_f { get; set; }

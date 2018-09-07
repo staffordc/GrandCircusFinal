@@ -1,12 +1,20 @@
-﻿namespace GCFinal.Domain.Models
+﻿using Newtonsoft.Json;
+
+namespace GCFinal.Domain.Models
 {
     public class Astro
     {
-        public string sunrise { get; set; }
-        public string sunset { get; set; }
-        public string moonrise { get; set; }
-        public string moonset { get; set; }
-        public string moon_phase { get; set; }
-        public string moon_illumination { get; set; }
+        [JsonProperty("sunrise")]
+        public string Sunrise { get; set; }
+        [JsonProperty("sunset")]
+        public string Sunset { get; set; }
+        [JsonProperty("moonrise")]
+        public string Moonrise { get; set; }
+        [JsonProperty("moonset")]
+        public string Moonset { get; set; }
+        [JsonProperty("moon_phase")]
+        public string MoonPhase { get; set; }
+        [JsonProperty("moon_illumination")]
+        public string MoonIllumination { get; set; }
     }
 }

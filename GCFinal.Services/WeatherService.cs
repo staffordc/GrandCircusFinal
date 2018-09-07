@@ -3,6 +3,7 @@ using GCFinal.Domain.Models;
 using RestSharp;
 using System;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GCFinal.Services
@@ -21,8 +22,8 @@ namespace GCFinal.Services
             var beginDate = startDate.ToString("yyyy/MM/dd");
             var endDate = startDate.AddDays(duration).ToString("yyyy/MM/dd");
             var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
-            var response = await _client.ExecuteTaskAsync<ForecastDay>(request);
-            return response.Data;
+            var response = await _client.ExecuteTaskAsync<RootObject>(request);
+            return response.Data.forecast.forecastday.First();
         }
 
     }
