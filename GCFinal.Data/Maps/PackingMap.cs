@@ -1,4 +1,4 @@
-﻿using GCFinal.Data.Items;
+﻿using GCFinal.Domain.Models.Items;
 using GCFinal.Domain.Models.PackingModels;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;

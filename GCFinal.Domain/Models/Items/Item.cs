@@ -1,6 +1,6 @@
 ﻿using GCFinal.Domain.Models.PackingModels;
 
-namespace GCFinal.Data.Items
+namespace GCFinal.Domain.Models.Items
 {
     public class Item
     {

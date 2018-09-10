@@ -1,4 +1,4 @@
-﻿using GCFinal.Domain.Models.PackingModels;
+﻿using GCFinal.Domain.Models.Items;
 using System.Data.Entity;
 
 namespace GCFinal.Data
@@ -9,7 +9,7 @@ namespace GCFinal.Data
         {
             //Length, Width and Height are Inches
             //Weight is Ounces
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Shirt",
                 Length = 13M,
@@ -17,8 +17,7 @@ namespace GCFinal.Data
                 Height = 0.326M,
                 Weight = 8.5M
             });
-
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Pants",
                 Length = 10.5M,
@@ -27,7 +26,7 @@ namespace GCFinal.Data
                 Weight = 22.9M
             });
 
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Sweater",
                 Length = 10M,
@@ -36,7 +35,7 @@ namespace GCFinal.Data
                 Weight = 14M
             });
 
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Hoodie",
                 Length = 12M,
@@ -46,7 +45,7 @@ namespace GCFinal.Data
 
             });
 
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Socks",
                 Length = 9M,
@@ -55,7 +54,7 @@ namespace GCFinal.Data
                 Weight = 1.68M
             });
 
-            context.PackingItems.Add(new PackingItem()
+            context.Items.Add(new Item()
             {
                 Name = "Undergarments",
                 Length = 4.5M,

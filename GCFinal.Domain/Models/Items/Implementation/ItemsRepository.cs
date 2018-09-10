@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GCFinal.Data.Items.Implementation
+namespace GCFinal.Domain.Models.Items.Implementation
 {
     public class ItemRepository : IItemRepository
     {

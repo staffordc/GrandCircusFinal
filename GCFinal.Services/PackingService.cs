@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GCFinal.Domain.Data;
 using GCFinal.Domain.Models.PackingModels;
-using GCFinal.Data.Items;
+using GCFinal.Domain.Models.Items;
 
 namespace GCFinal.Services
 {

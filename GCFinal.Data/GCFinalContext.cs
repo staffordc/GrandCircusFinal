@@ -1,5 +1,5 @@
 ﻿using GCFinal.Data.Maps;
-using GCFinal.Domain.Models.PackingModels;
+using GCFinal.Domain.Models.Items;
 using System.Data.Entity;
 
 namespace GCFinal.Data
@@ -11,7 +11,7 @@ namespace GCFinal.Data
             Database.SetInitializer(new GCFinalInitalizer());
         }
 
-        public IDbSet<PackingItem> PackingItems { get; set; }
+        public IDbSet<Item> Items { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
