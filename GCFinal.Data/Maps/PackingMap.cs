@@ -9,9 +9,9 @@ namespace GCFinal.Data.Maps
     {
         public PackingMap()
         {
-            HasKey(x => x.Id);
-            Property(x => x.Id).
-                HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+           // HasKey(x => x.Id);
+           // Property(x => x.Id).
+           //     HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name);
             Property(x => x.Length);
             Property(x => x.Width);

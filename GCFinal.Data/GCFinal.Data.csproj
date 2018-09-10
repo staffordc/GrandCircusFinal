@@ -50,6 +50,10 @@
   <ItemGroup>
     <Compile Include="GCFinalContext.cs" />
     <Compile Include="GCFinalInitalizer.cs" />
+    <Compile Include="Items\IItemRepository.cs" />
+    <Compile Include="Items\Implementation\ItemsRepository.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemSlot.cs" />
     <Compile Include="Maps\PackingMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
