@@ -12,6 +12,7 @@ namespace GCFinal.Domain.Models.Items
         TopOuter,
         Top,
         TopInner,
+        TopExterior,
         Hands,
         Bottom,
         BottomInner,
