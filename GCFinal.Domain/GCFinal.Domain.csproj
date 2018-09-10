@@ -59,7 +59,8 @@
     <Compile Include="Models\ForecastDay.cs" />
     <Compile Include="Models\Hour.cs" />
     <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\PackingModels\Clothing.cs" />
+    <Compile Include="Models\PackingModels\PackingItem.cs" />
+    <Compile Include="Models\PackingModels\Temperature.cs" />
     <Compile Include="Models\RootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

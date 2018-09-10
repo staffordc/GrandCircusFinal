@@ -5,14 +5,14 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace GCFinal.Data.Maps
 {
-    class ClothingMap : EntityTypeConfiguration<Clothing>
+    class PackingMap : EntityTypeConfiguration<PackingItem>
     {
-        public ClothingMap()
+        public PackingMap()
         {
             HasKey(x => x.Id);
             Property(x => x.Id).
                 HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.ItemName);
+            Property(x => x.Name);
             Property(x => x.Length);
             Property(x => x.Width);
             Property(x => x.Height);

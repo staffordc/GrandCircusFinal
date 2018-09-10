@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="GCFinalContext.cs" />
     <Compile Include="GCFinalInitalizer.cs" />
-    <Compile Include="Maps\ClothingMap.cs" />
+    <Compile Include="Maps\PackingMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

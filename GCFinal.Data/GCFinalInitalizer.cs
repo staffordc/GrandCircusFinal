@@ -9,59 +9,36 @@ namespace GCFinal.Data
         {
             //Length, Width and Height are Inches
             //Weight is Ounces
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Shirt",
-                FoldType = "Square",
+                Name = "Shirt",
                 Length = 13M,
                 Width = 10M,
                 Height = 0.326M,
                 Weight = 8.5M
             });
 
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Shirt",
-                FoldType = "Rectangle",
-                Length = 6.65M,
-                Width = 10M,
-                Height = 0.715M,
-                Weight = 8.5M
-            });
-            
-            context.Clothes.Add(new Clothing()
-            {
-                ItemName = "Pants",
-                FoldType = "Rectangle",
-                Length = 19M,
-                Width = 11M,
-                Height = 0.92M,
-                Weight = 22.9M
-            });
-
-            context.Clothes.Add(new Clothing(){
-                ItemName = "Pants",
-                FoldType = "Square",
+                Name = "Pants",
                 Length = 10.5M,
                 Width = 11M,
                 Height = 1.62M,
                 Weight = 22.9M
             });
 
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Sweater",
-                FoldType  = "Square",
+                Name = "Sweater",
                 Length = 10M,
                 Width = 11.5M,
                 Height = 1.7M,
                 Weight = 14M
             });
 
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Hoodie",
-                FoldType = "Square",
+                Name = "Hoodie",
                 Length = 12M,
                 Width = 11M,
                 Height = 2.675M,
@@ -69,30 +46,18 @@ namespace GCFinal.Data
 
             });
 
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Short Socks",
-                FoldType = "Rectangle",
-                Length = 9M,
-                Width = 3.5M,
-                Height = .44M,
-                Weight = 1.2M
-            });
-
-            context.Clothes.Add(new Clothing()
-            {
-                ItemName = "Tall Socks",
-                FoldType = "Rectangle",
+                Name = "Socks",
                 Length = 9M,
                 Width = 3.5M,
                 Height = 0.72M,
                 Weight = 1.68M
             });
 
-            context.Clothes.Add(new Clothing()
+            context.PackingItems.Add(new PackingItem()
             {
-                ItemName = "Undergarments",
-                FoldType = "Rectangle",
+                Name = "Undergarments",
                 Length = 4.5M,
                 Width = 7.7M,
                 Height = .45M,

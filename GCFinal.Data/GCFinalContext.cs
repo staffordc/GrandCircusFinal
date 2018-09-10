@@ -11,11 +11,11 @@ namespace GCFinal.Data
             Database.SetInitializer(new GCFinalInitalizer());
         }
 
-        public IDbSet<Clothing>Clothes { get; set; }
+        public IDbSet<PackingItem> PackingItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new ClothingMap());
+            modelBuilder.Configurations.Add(new PackingMap());
             base.OnModelCreating(modelBuilder);
         }
     }
