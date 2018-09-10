@@ -4,9 +4,7 @@ namespace GCFinal.Domain.Models
 {
     public class RootObject
     {
-        [JsonProperty("location")]
-        public Location Location { get; set; }
-        [JsonProperty("forecast")]
-        public Forecast Forecast { get; set; }
+        public Location location { get; set; }
+        public Forecast forecast { get; set; }
     }
 }

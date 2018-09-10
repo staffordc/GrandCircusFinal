@@ -1,12 +1,10 @@
-﻿using System;
+﻿using GCFinal.Domain.Models;
+using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using GCFinal.Domain.Models;
-using RestSharp;
-using Newtonsoft.Json;
 
 namespace GCFinal.MVC.Client
 {
@@ -35,7 +33,7 @@ namespace GCFinal.MVC.Client
             request.Parameters.Add(new Parameter()
             {
                 Name = "duration",
-                Type =ParameterType.QueryString,
+                Type = ParameterType.QueryString,
                 Value = duration
             });
             var response = await _client.ExecuteTaskAsync(request);

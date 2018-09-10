@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace GCFinal.Data
 {
-    public class GCFinalInitalizer : CreateDatabaseIfNotExists<GCFinalContext>
+    public class GCFinalInitalizer : DropCreateDatabaseAlways<GCFinalContext>
     {
         protected override void Seed(GCFinalContext context)
         {
@@ -119,6 +119,7 @@ namespace GCFinal.Data
                 Weight = 2.46M
             });
 
+<<<<<<< HEAD
             context.Items.Add(new Item()
             {
                 Name = "Jacket",
@@ -215,6 +216,8 @@ namespace GCFinal.Data
                 Weight = 13M
             });
             
+=======
+>>>>>>> feature/APIData
             context.SaveChanges();
             base.Seed(context);
         }
