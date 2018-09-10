@@ -11,16 +11,12 @@ namespace GCFinal.Models
         public double DailyMaxTemp { get; set; }
         public double DailyMinTemp { get; set; }
         public double DailyAvgTemp { get; set; }
-        public string AstroSunrise { get; set; }
-        public string ConIcon1 { get; set; }
-        public string ConIcon2 { get; set; }
+        
         public double MaxWind { get; set; }
         public double TotalPrecipMm { get; set; }
         public double AvgHumidity { get; set; }
-        public string WindDirection { get; set; }
-        public string ChanceOfSnow { get; set; }
-        public string LocationName { get; set; }
-        public Forecast Forecast { get; set; }
+        public double WindMph { get; set; }
+        
 
         //Convert.ToSingle(info needed to be changed to float or w/e num type)
 
@@ -30,15 +26,11 @@ namespace GCFinal.Models
             DailyMaxTemp = forecastDay.Day.MaxTempF;
             DailyMinTemp = forecastDay.Day.MinTempF;
             DailyAvgTemp = forecastDay.Day.AvgTempF;
-            AstroSunrise = forecastDay.Astro.Sunrise;
-            ConIcon1 = condition.Icon;
-            ConIcon2 = condition.Icon;
             MaxWind = day.MaxWindMph;
             TotalPrecipMm = day.TotalPrecipMm;
             AvgHumidity = day.AvgHumidity;
-            WindDirection = hour.WindDir;
-            ChanceOfSnow = hour.ChanceOfSnow;
-            LocationName = location.Name;
+            WindMph = hour.WindMph;
+            
             
         }
     }
