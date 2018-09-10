@@ -11,11 +11,9 @@ namespace GCFinal.Models
         public double DailyMaxTemp { get; set; }
         public double DailyMinTemp { get; set; }
         public double DailyAvgTemp { get; set; }
-        
         public double MaxWind { get; set; }
-        public double TotalPrecipMm { get; set; }
+        public double TotalPrecip { get; set; }
         public double AvgHumidity { get; set; }
-        public double WindMph { get; set; }
         
 
         //Convert.ToSingle(info needed to be changed to float or w/e num type)
@@ -27,9 +25,9 @@ namespace GCFinal.Models
             DailyMinTemp = forecastDay.Day.MinTempF;
             DailyAvgTemp = forecastDay.Day.AvgTempF;
             MaxWind = day.MaxWindMph;
-            TotalPrecipMm = day.TotalPrecipMm;
+            TotalPrecip = day.TotalPrecipMm;
             AvgHumidity = day.AvgHumidity;
-            WindMph = hour.WindMph;
+            
             
             
         }
