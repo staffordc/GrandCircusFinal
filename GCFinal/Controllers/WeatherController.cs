@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using GCFinal.Services;
 using System;
+using System.Linq;
 using GCFinal.Domain.Models;
 using System.Threading.Tasks;
 
@@ -18,9 +19,19 @@ namespace GCFinal.Controllers
         }
 
         [HttpGet]
-        public async Task<ForecastDay> GetWeatherAsync(string location, DateTime startDate, int duration)
+        public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
-            return await _weatherService.GetWeatherAsync(location, startDate, duration);
+            var dateOneYearAgo = startDate.AddYears(-1);
+            var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
+            var dateTwoYearsAgo = startDate.AddYears(-2);
+            var twoYearsAgo = await _weatherService.GetWeatherAsync(location, dateTwoYearsAgo, duration);
+            var dateThreeYearsAgo = startDate.AddYears(-3);
+            var threeYearsAgo = await _weatherService.GetWeatherAsync(location, dateThreeYearsAgo, duration);
+            List<ForecastDay> items = new List<ForecastDay>();
+            items.AddRange(oneYearAgo);
+            items.AddRange(twoYearsAgo);
+            items.AddRange(threeYearsAgo);
+            return items;
         }
 
         // GET: api/Weather

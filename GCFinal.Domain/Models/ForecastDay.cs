@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace GCFinal.Domain.Models
 {
@@ -7,12 +7,12 @@ namespace GCFinal.Domain.Models
     {
         [JsonProperty("date")]
         public string Date { get; set; }
-        [JsonProperty("date_epoch")]
-        public int DateEpoch { get; set; }
+        //[JsonProperty("date_epoch")]
+        //public int DateEpoch { get; set; }
         [JsonProperty("day")]
         public Day Day { get; set; }
-        [JsonProperty("astro")]
-        public Astro Astro { get; set; }
+        //[JsonProperty("astro")]
+        //public Astro Astro { get; set; }
         [JsonProperty("hour")]
         public List<Hour> Hour { get; set; }
     }
