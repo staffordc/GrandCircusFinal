@@ -33,7 +33,7 @@ namespace GCFinal.Data
                 Height = 0.326M,
                 Weight = 8.5M
             });
-            
+
             context.Items.Add(new Item()
             {
                 Name = "Shorts",
@@ -119,7 +119,6 @@ namespace GCFinal.Data
                 Weight = 2.46M
             });
 
-<<<<<<< HEAD
             context.Items.Add(new Item()
             {
                 Name = "Jacket",
@@ -215,9 +214,7 @@ namespace GCFinal.Data
                 Height = 4M,
                 Weight = 13M
             });
-            
-=======
->>>>>>> feature/APIData
+
             context.SaveChanges();
             base.Seed(context);
         }
