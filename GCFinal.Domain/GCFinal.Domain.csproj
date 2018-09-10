@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IPackingService.cs" />
     <Compile Include="Data\IWeatherService.cs" />
     <Compile Include="Models\Astro.cs" />
     <Compile Include="Models\Condition.cs" />
@@ -58,7 +59,14 @@
     <Compile Include="Models\Forecast.cs" />
     <Compile Include="Models\ForecastDay.cs" />
     <Compile Include="Models\Hour.cs" />
+    <Compile Include="Models\Items\IItemRepository.cs" />
+    <Compile Include="Models\Items\Implementation\ItemsRepository.cs" />
+    <Compile Include="Models\Items\Item.cs" />
+    <Compile Include="Models\Items\ItemSlot.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\PackingModels\DayInfo.cs" />
+    <Compile Include="Models\PackingModels\PackingItem.cs" />
+    <Compile Include="Models\PackingModels\Temperature.cs" />
     <Compile Include="Models\RootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
