@@ -1,14 +1,24 @@
-﻿namespace GCFinal.Domain.Models
+﻿using Newtonsoft.Json;
+
+namespace GCFinal.Domain.Models
 {
     public class Location
     {
-        public string name { get; set; }
-        public string region { get; set; }
-        public string country { get; set; }
-        public double lat { get; set; }
-        public double lon { get; set; }
-        public string tz_id { get; set; }
-        public int localtime_epoch { get; set; }
-        public string localtime { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("region")]
+        public string Region { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
+        [JsonProperty("lat")]
+        public double Lat { get; set; }
+        [JsonProperty("lon")]
+        public double Lon { get; set; }
+        [JsonProperty("tz_id")]
+        public string TzId { get; set; }
+        [JsonProperty("localtime_epoch")]
+        public int LocaltimeEpoch { get; set; }
+        [JsonProperty("localtime")]
+        public string Localtime { get; set; }
     }
 }

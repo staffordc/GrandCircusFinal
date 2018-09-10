@@ -1,36 +1,68 @@
-﻿namespace GCFinal.Domain.Models
+﻿using Newtonsoft.Json;
+
+namespace GCFinal.Domain.Models
 {
     public class Hour
     {
-        //public int TimeEpoch { get; set; }
-        public string time { get; set; }
-        //public double temp_c { get; set; }
-        //public double temp_f { get; set; }
-        //public int is_day { get; set; }
-        //public Condition2 condition { get; set; }
-        public double wind_mph { get; set; }
-        //public double wind_kph { get; set; }
-        //public int wind_degree { get; set; }
-        //public string wind_dir { get; set; }
-        //public double pressure_mb { get; set; }
-        //public double pressure_in { get; set; }
-        public double precip_mm { get; set; }
-        //public double precip_in { get; set; }
-        public int humidity { get; set; }
-        //public int cloud { get; set; }
-        //public double feelslike_c { get; set; }
-        //public double feelslike_f { get; set; }
-        //public double windchill_c { get; set; }
-        //public double windchill_f { get; set; }
-        //public double heatindex_c { get; set; }
-        //public double heatindex_f { get; set; }
-        //public double dewpoint_c { get; set; }
-        //public double dewpoint_f { get; set; }
-        //public int will_it_rain { get; set; }
-        //public string chance_of_rain { get; set; }
-        //public int will_it_snow { get; set; }
-        //public string chance_of_snow { get; set; }
-        //public double vis_km { get; set; }
-        //public double vis_miles { get; set; }
+        [JsonProperty("time_epoch")]
+        public int TimeEpoch { get; set; }
+        [JsonProperty("time")]
+        public string Time { get; set; }
+        [JsonProperty("temp_c")]
+        public double TempC { get; set; }
+        [JsonProperty("temp_f")]
+        public double TempF { get; set; }
+        [JsonProperty("is_day")]
+        public int IsDay { get; set; }
+        [JsonProperty("condition")]
+        public Condition2 Condition { get; set; }
+        [JsonProperty("wind_mph")]
+        public double WindMph { get; set; }
+        [JsonProperty("wind_kph")]
+        public double WindKph { get; set; }
+        [JsonProperty("wind_degree")]
+        public int WindDegree { get; set; }
+        [JsonProperty("wind_dir")]
+        public string WindDir { get; set; }
+        [JsonProperty("pressure_mb")]
+        public double PressureMb { get; set; }
+        [JsonProperty("pressure_in")]
+        public double PressureIn { get; set; }
+        [JsonProperty("precip_mm")]
+        public double PrecipMm { get; set; }
+        [JsonProperty("precip_in")]
+        public double PrecipIn { get; set; }
+        [JsonProperty("humidity")]
+        public int Humidity { get; set; }
+        [JsonProperty("Cloud")]
+        public int Cloud { get; set; }
+        [JsonProperty("feelslike_c")]
+        public double FeelsLikeC { get; set; }
+        [JsonProperty("feelslike_f")]
+        public double FeelsLikeF { get; set; }
+        [JsonProperty("windchill_c")]
+        public double WindchillC { get; set; }
+        [JsonProperty("windchill_f")]
+        public double WindchillF { get; set; }
+        [JsonProperty("heatindex_c")]
+        public double HeatIndexC { get; set; }
+        [JsonProperty("heatindex_f")]
+        public double HeatIndexF { get; set; }
+        [JsonProperty("dewpoint_c")]
+        public double DewpointC { get; set; }
+        [JsonProperty("dewpoint_f")]
+        public double DewpointF { get; set; }
+        [JsonProperty("will_it_rain")]
+        public int WillItRain { get; set; }
+        [JsonProperty("chance_of_rain")]
+        public string ChanceOfRain { get; set; }
+        [JsonProperty("will_it_snow")]
+        public int WillItSnow { get; set; }
+        [JsonProperty("chance_of_snow")]
+        public string ChanceOfSnow { get; set; }
+        [JsonProperty("vis_km")]
+        public double VisKm { get; set; }
+        [JsonProperty("vis_miles")]
+        public double VisMiles { get; set; }
     }
 }

@@ -5,35 +5,20 @@ namespace GCFinal.Domain.Models
 {
     public class Day
     {
-        [JsonProperty("maxtemp_c")]
-        public double MaxtempC { get; set; }
-        [JsonProperty("maxtemp_f")]
-        public double MaxtempF { get; set; }
-        [JsonProperty("mintemp_c")]
-        public double MintempC { get; set; }
-        [JsonProperty("mintemp_f")]
-        public double MintempF { get; set; }
-        [JsonProperty("avgtemp_c")]
-        public double AvgtempC { get; set; }
-        [JsonProperty("avgtemp_f")]
-        public double AvgtempF { get; set; }
-        //[JsonProperty("maxwind_mph")]
-        //public double MaxWindMph { get; set; }
-        //[JsonProperty("maxwind_kph")]
-        //public double MaxWindKph { get; set; }
-        //[JsonProperty("totalprecip_mm")]
-        //public double TotalPrecipMm { get; set; }
-        //[JsonProperty("totalprecip_in")]
-        //public double TotalPrecipIn { get; set; }
-        //[JsonProperty("avgvis_km")]
-        //public double AvgVisKm { get; set; }
-        //[JsonProperty("avgvis_miles")]
-        //public double AvgVisMiles { get; set; }
-        //[JsonProperty("avghumidity")]
-        //public double AvgHumidity { get; set; }
-        //[JsonProperty("condition")]
-        //public Condition Condition { get; set; }
-        //[JsonProperty("uv")]
-        //public double Uv { get; set; }
+        public double maxtemp_c { get; set; }
+        public double maxtemp_f { get; set; }
+        public double mintemp_c { get; set; }
+        public double mintemp_f { get; set; }
+        public double avgtemp_c { get; set; }
+        public double avgtemp_f { get; set; }
+        public double maxwind_mph { get; set; }
+        public double maxwind_kph { get; set; }
+        public double totalprecip_mm { get; set; }
+        public double totalprecip_in { get; set; }
+        public double avgvis_km { get; set; }
+        public double avgvis_miles { get; set; }
+        public double avghumidity { get; set; }
+        public Condition condition { get; set; }
+        public double uv { get; set; }
     }
 }
