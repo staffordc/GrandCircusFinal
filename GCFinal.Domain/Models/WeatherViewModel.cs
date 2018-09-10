@@ -15,7 +15,7 @@ namespace GCFinal.Models
         public double TotalPrecip { get; set; }
         public double AvgHumidity { get; set; }
         public List<Hour> Hours { get; set; }
-        //add Weather Service by moving to MVC
+        
 
         //Convert.ToSingle(info needed to be changed to float or w/e num type)
 
