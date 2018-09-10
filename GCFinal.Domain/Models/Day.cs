@@ -6,17 +6,17 @@ namespace GCFinal.Domain.Models
     public class Day
     {
         [JsonProperty("maxtemp_c")]
-        public double MaxtempC { get; set; }
+        public double MaxTempC { get; set; }
         [JsonProperty("maxtemp_f")]
-        public double MaxtempF { get; set; }
+        public double MaxTempF { get; set; }
         [JsonProperty("mintemp_c")]
-        public double MintempC { get; set; }
+        public double MinTempC { get; set; }
         [JsonProperty("mintemp_f")]
-        public double MintempF { get; set; }
+        public double MinTempF { get; set; }
         [JsonProperty("avgtemp_c")]
-        public double AvgtempC { get; set; }
+        public double AvgTempC { get; set; }
         [JsonProperty("avgtemp_f")]
-        public double AvgtempF { get; set; }
+        public double AvgTempF { get; set; }
         [JsonProperty("maxwind_mph")]
         public double MaxWindMph { get; set; }
         [JsonProperty("maxwind_kph")]
