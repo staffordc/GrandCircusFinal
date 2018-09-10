@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace GCFinal.Data
 {
-    public class GCFinalInitalizer : CreateDatabaseIfNotExists<GCFinalContext>
+    public class GCFinalInitalizer : DropCreateDatabaseAlways<GCFinalContext>
     {
         protected override void Seed(GCFinalContext context)
         {
@@ -62,7 +62,7 @@ namespace GCFinal.Data
                 Height = .45M,
                 Weight = 2.46M
             });
-            
+
             context.SaveChanges();
             base.Seed(context);
         }

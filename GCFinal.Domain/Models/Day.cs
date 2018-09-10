@@ -16,9 +16,9 @@ namespace GCFinal.Domain.Models
         public double totalprecip_mm { get; set; }
         public double totalprecip_in { get; set; }
         public double avgvis_km { get; set; }
-        public double avgvis_miles { get; set; }
-        public double avghumidity { get; set; }
+        public int avgvis_miles { get; set; }
+        public int avghumidity { get; set; }
         public Condition condition { get; set; }
-        public double uv { get; set; }
+        public int uv { get; set; }
     }
 }
