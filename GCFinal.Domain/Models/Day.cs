@@ -1,16 +1,14 @@
-﻿using Newtonsoft.Json;
-
-namespace GCFinal.Domain.Models
+﻿namespace GCFinal.Domain.Models
 
 {
     public class Day
     {
         public double maxtemp_c { get; set; }
-        public double maxtemp_f { get; set; }
+        public decimal maxtemp_f { get; set; }
         public double mintemp_c { get; set; }
-        public double mintemp_f { get; set; }
+        public decimal mintemp_f { get; set; }
         public double avgtemp_c { get; set; }
-        public double avgtemp_f { get; set; }
+        public decimal avgtemp_f { get; set; }
         public double maxwind_mph { get; set; }
         public double maxwind_kph { get; set; }
         public double totalprecip_mm { get; set; }

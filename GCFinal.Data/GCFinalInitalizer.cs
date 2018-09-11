@@ -69,7 +69,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Sweater",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.TopOuter,
                 Temperature = Temperature.Cold,
                 IsRain = false,
@@ -83,7 +83,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Hoodie",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.TopOuter,
                 Temperature = Temperature.Cool,
                 IsRain = false,

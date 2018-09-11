@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GCFinal.Services
 {
-    class TripPackingService
+    public class TripPackingService
     {
         private GCFinalContext db = new GCFinalContext();
         //Daily Items
@@ -36,46 +36,46 @@ namespace GCFinal.Services
 
         private IQueryable GetHotClothes(Temperature hot, bool isRain)
         {
-            if (isRain == true)
+            if (isRain)
             {
-                return db.Items.Where(x => x.Temperature == hot || x.IsRain == true || x.IsDaily = true);
+                return db.Items.Where(x => x.Temperature == hot || x.IsRain == isRain || x.IsDaily == true);
             }
-            else return db.Items.Where(x => x.Temperature == hot);
+            else return db.Items.Where(x => x.Temperature == hot || x.IsDaily == true);
         }
 
         private IQueryable GetWarmClothes(Temperature warm, bool isRain, bool isWind)
         {
-            if (isRain == true)
+            if (isRain)
             {
-                return db.Items.Where(x => x.Temperature == warm || x.IsRain == true);
+                return db.Items.Where(x => x.Temperature == warm || x.IsRain == isRain || x.IsDaily == true);
             }
 
-            if (isWind == true)
+            if (isWind)
             {
-                return db.Items.Where(x => x.Temperature == warm || x.IsWindy == true);
+                return db.Items.Where(x => x.Temperature == warm || x.IsWindy == isWind || x.IsDaily == true);
             }
 
-            else return db.Items.Where(x => x.Temperature == warm);
+            else return db.Items.Where(x => x.Temperature == warm || x.IsDaily == true);
         }
 
         private IQueryable GetCoolClothes(Temperature cool, bool isRain, bool isWind)
         {
-            if (isRain == true)
+            if (isRain)
             {
-                return db.Items.Where(x => x.Temperature == cool || x.IsRain == true);
+                return db.Items.Where(x => x.Temperature == cool || x.IsRain == isRain || x.IsDaily == true);
             }
 
-            if (isWind == true)
+            if (isWind)
             {
-                return db.Items.Where(x => x.Temperature == cool || x.IsWindy == true);
+                return db.Items.Where(x => x.Temperature == cool || x.IsWindy == isWind || x.IsDaily == true);
             }
 
-            else return db.Items.Where(x => x.Temperature == cool);
+            else return db.Items.Where(x => x.Temperature == cool || x.IsDaily == true);
         }
 
         private IQueryable GetColdClothes(Temperature cold)
         {
-            return db.Items.Where(x => x.Temperature == cold);
+            return db.Items.Where(x => x.Temperature == cold || x.IsDaily == true);
         }
 
         public bool IsPrecipitating(decimal rainValue)

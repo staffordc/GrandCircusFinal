@@ -232,6 +232,10 @@
       <Project>{3F20FF59-EE1E-41AA-86E5-8A1FC644B3B3}</Project>
       <Name>GCFinal.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GCFinal.Services\GCFinal.Services.csproj">
+      <Project>{57cb64b6-b505-417e-a159-196b910006f3}</Project>
+      <Name>GCFinal.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
