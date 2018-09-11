@@ -9,12 +9,12 @@ namespace GCFinal.MVC.Models
 {
     public class WeatherViewModel
     {
-        public double DailyMaxTemp { get; set; }
-        public double DailyMinTemp { get; set; }
-        public double DailyAvgTemp { get; set; }
-        public double AvgWind { get; set; }
-        public double AvgPrecip { get; set; }
-        public double AvgHumidity { get; set; }
+        public string DailyMaxTemp { get; set; }
+        public string DailyMinTemp { get; set; }
+        public string DailyAvgTemp { get; set; }
+        public string AvgWind { get; set; }
+        public string AvgPrecip { get; set; }
+        public string AvgHumidity { get; set; }
         public string ItemName { get; set; }
     }
 }
