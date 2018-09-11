@@ -44,7 +44,7 @@ namespace GCFinal.Services
         {
             if (isRain == true)
             {
-                return db.Items.Where(x => x.Temperature == hot && x.IsRain == true); 
+                return db.Items.Where(x => x.Temperature == hot || x.IsRain == true); 
             }
             else return db.Items.Where(x => x.Temperature == hot);
         }
@@ -53,12 +53,12 @@ namespace GCFinal.Services
         {
             if (isRain == true)
             {
-                return db.Items.Where(x => x.Temperature == warm && x.IsRain == true);
+                return db.Items.Where(x => x.Temperature == warm || x.IsRain == true);
             }
 
             if (isWind == true)
             {
-                return db.Items.Where(x => x.Temperature == warm && x.IsWindy == true);
+                return db.Items.Where(x => x.Temperature == warm || x.IsWindy == true);
             }
 
             else return db.Items.Where(x => x.Temperature == warm);
@@ -68,12 +68,12 @@ namespace GCFinal.Services
         {
             if (isRain == true)
             {
-                return db.Items.Where(x => x.Temperature == cool && x.IsRain == true);
+                return db.Items.Where(x => x.Temperature == cool || x.IsRain == true);
             }
 
             if (isWind == true)
             {
-                return db.Items.Where(x => x.Temperature == cool && x.IsWindy == true);
+                return db.Items.Where(x => x.Temperature == cool || x.IsWindy == true);
             }
 
             else return db.Items.Where(x => x.Temperature == cool);
