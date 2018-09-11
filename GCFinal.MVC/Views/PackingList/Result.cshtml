@@ -7,7 +7,26 @@
 <h2>Result</h2>
 
 <table>
-    {
+        <tr>
+            <th>
+                Daily Max Temp
+            </th>
+            <th>
+                Daily Min Temp
+            </th>
+            <th>
+                Daily Avg Temp
+            </th>
+            <th>
+                Avg Precip (mm)
+            </th>
+            <th>
+                Avg Wind Speed
+            </th>
+            <th>
+                Avg Humidity %
+            </th>
+        </tr>
         <tr>
             <td>
                 @Html.DisplayFor(item => item.DailyMaxTemp)
@@ -16,11 +35,16 @@
                 @Html.DisplayFor(item => item.DailyMinTemp)
             </td>
             <td>
+                @Html.DisplayFor(item => item.DailyAvgTemp)
+            </td>
+            <td>
                 @Html.DisplayFor(item => item.AvgPrecip)
             </td>
             <td>
                 @Html.DisplayFor(item => item.AvgWind)
             </td>
+            <td>
+                @Html.DisplayFor(item => item.AvgHumidity)
+            </td>
         </tr>
-    }
 </table>
