@@ -3,9 +3,11 @@ using GCFinal.MVC.Client;
 using GCFinal.MVC.Models;
 using GCFinal.Services;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using GCFinal.Domain.Models.Items;
 
 namespace GCFinal.MVC.Controllers
 {
@@ -38,7 +40,8 @@ namespace GCFinal.MVC.Controllers
             var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.hour).Select(x => x.humidity).Sum() /
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
             var itemsToPack =
-                _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph);
+                await _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph)
+                    .ToListAsync();
             var vm = new WeatherViewModel()
             {
                 AvgPrecip = avgPrecipitationMillimeters,

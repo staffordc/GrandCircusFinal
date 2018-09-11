@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using GCFinal.Domain.Models.Items;
 
 namespace GCFinal.MVC.Models
 {
@@ -10,6 +12,6 @@ namespace GCFinal.MVC.Models
         public decimal AvgWind { get; set; }
         public decimal AvgPrecip { get; set; }
         public decimal AvgHumidity { get; set; }
-        public IQueryable ItemName { get; set; }
+        public List<object> ItemName { get; set; }
     }
 }
