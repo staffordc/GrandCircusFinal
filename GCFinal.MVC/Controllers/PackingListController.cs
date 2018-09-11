@@ -27,12 +27,12 @@ namespace GCFinal.MVC.Controllers
             int duration)
         {
             var weatherObject = await _weatherClient.GetHistoricalWeather(location, startDate, duration);
-            var avgPrecipitationMillimeters = weatherObject.SelectMany(x => x.hour).Select(x => x.precip_mm).Sum() / weatherObject.Count;
-            var avgWindSpeedMph = weatherObject.SelectMany(x => x.hour).Select(x => x.wind_mph).Sum() / weatherObject.Count;
-            var avgDailyHighTempF = weatherObject.Select(x => x.day).Select(x => x.maxtemp_f).Average();
-            var avgDailyLowTempF = weatherObject.Select(x => x.day).Select(x => x.mintemp_f).Average();
-            var avgDailyAvgTempF = weatherObject.Select(x => x.day).Select(x => x.avgtemp_f).Average();
-            var avgHumidityPercent = weatherObject.SelectMany(x => x.hour).Select(x => x.humidity).Sum() /
+            var avgPrecipitationMillimeters = weatherObject.SelectMany(x => x.Hour).Select(x => x.precip_mm).Sum() / weatherObject.Count;
+            var avgWindSpeedMph = weatherObject.SelectMany(x => x.Hour).Select(x => x.wind_mph).Sum() / weatherObject.Count;
+            var avgDailyHighTempF = weatherObject.Select(x => x.Day).Select(x => x.MaxTempF).Average();
+            var avgDailyLowTempF = weatherObject.Select(x => x.Day).Select(x => x.MinTempF).Average();
+            var avgDailyAvgTempF = weatherObject.Select(x => x.Day).Select(x => x.AvgTempF).Average();
+            var avgHumidityPercent = weatherObject.SelectMany(x => x.Hour).Select(x => x.humidity).Sum() /
                                      weatherObject.Count;
             var vm = new WeatherViewModel()
             {

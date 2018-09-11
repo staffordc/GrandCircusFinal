@@ -5,6 +5,6 @@ namespace GCFinal.Domain.Models
 {
     public class Forecast
     {
-        public List<ForecastDay> forecastday { get; set; }
+        public List<ForecastDay> ForecastDay { get; set; }
     }
 }

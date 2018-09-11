@@ -24,7 +24,7 @@ namespace GCFinal.Services
             var endDate = startDate.AddDays(duration-1).ToString("yyyy/MM/dd");
             var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
             var response = await _client.ExecuteTaskAsync<RootObject>(request);
-            return response.Data.forecast.forecastday;
+            return response.Data.Forecast.forecastday;
         }
 
     }
