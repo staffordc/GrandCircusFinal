@@ -13,7 +13,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Short Sleeve Shirt",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.Top,
                 Temperature = Temperature.Hot,
                 IsRain = false,
@@ -27,7 +27,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Long Sleeve Shirt",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.Top,
                 Temperature = Temperature.Mild,
                 IsRain = false,
@@ -41,7 +41,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Shorts",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.Bottom,
                 Temperature = Temperature.Hot,
                 IsRain = false,
@@ -55,7 +55,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Pants",
-                IsDaily = true,
+                IsDaily = false,
                 Slot = ItemSlot.Bottom,
                 Temperature = Temperature.Mild,
                 IsRain = false,
@@ -237,7 +237,7 @@ namespace GCFinal.Data
             context.Items.Add(new Item()
             {
                 Name = "Toiletries Bag",
-                IsDaily = false,
+                IsDaily = true,
                 Slot = ItemSlot.Accessory,
                 Temperature = Temperature.Mild,
                 IsRain = false,

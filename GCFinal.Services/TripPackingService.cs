@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GCFinal.Domain.Data;
+﻿using GCFinal.Data;
 using GCFinal.Domain.Models.PackingModels;
-using GCFinal.Domain.Models.Items;
-using GCFinal.Data;
+using System.Linq;
 
 namespace GCFinal.Services
 {
@@ -16,7 +10,7 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public IQueryable ItemsToPack( decimal tempAvg, decimal rainAvg, decimal windAvg)
+        public IQueryable ItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);
             bool isPrecipitating = IsPrecipitating(rainAvg);
@@ -44,7 +38,7 @@ namespace GCFinal.Services
         {
             if (isRain == true)
             {
-                return db.Items.Where(x => x.Temperature == hot || x.IsRain == true); 
+                return db.Items.Where(x => x.Temperature == hot || x.IsRain == true || x.IsDaily = true);
             }
             else return db.Items.Where(x => x.Temperature == hot);
         }
@@ -102,7 +96,7 @@ namespace GCFinal.Services
             return false;
         }
 
-        public Temperature GetTempEnum (decimal temp)
+        public Temperature GetTempEnum(decimal temp)
         {
             if (temp >= 80)
             {
@@ -118,9 +112,9 @@ namespace GCFinal.Services
             {
                 return Temperature.Cool;
             }
-            
+
             return Temperature.Cold;
-            
+
         }
     }
 }
