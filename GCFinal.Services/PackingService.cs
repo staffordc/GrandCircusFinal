@@ -18,6 +18,7 @@ namespace GCFinal.Services
             ItemSlot.Bottom,
             ItemSlot.BottomInner,
             ItemSlot.FeetInner,
+            ItemSlot.Feet
         };
 
         private readonly IItemRepository itemRepository;
@@ -27,16 +28,19 @@ namespace GCFinal.Services
             this.itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
         }
 
+
+        //returns all items to be packed
         public IEnumerable<PackingItem> GetItems(IEnumerable<DayInfo> days)
         {
-            bool isFemale = true; // TODO: take this as a param on this method, and on the interface
-            var dailyItems = this.GetDailyItems(isFemale, days);
+            var dailyItems = this.GetDailyItems(days);
             var tripItems = this.GetTripItems(days);
 
             return dailyItems.Concat(tripItems).ToList();
         }
 
-        public IEnumerable<PackingItem> GetDailyItems(bool isFemale, IEnumerable<DayInfo> days)
+
+        //logic to get clothing per day based on weather
+        public IEnumerable<PackingItem> GetDailyItems(IEnumerable<DayInfo> days)
         {
             var dailyItems = this.itemRepository.GetDailyItems();
             var dailyItemsBySlot = dailyItems.ToLookup(k => k.Slot);
@@ -45,12 +49,6 @@ namespace GCFinal.Services
             {
                 foreach (var slot in SlotsForOutfits)
                 {
-                    // skip TopInner if not female
-                    if (!isFemale && slot == ItemSlot.TopInner)
-                    {
-                        continue;
-                    }
-
                     // skip any slots that don't exist in the data - TODO this might be problematic!
                     if (!dailyItemsBySlot.Contains(slot))
                     {
