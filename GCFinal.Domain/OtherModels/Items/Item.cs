@@ -16,6 +16,10 @@ namespace GCFinal.Domain.Models.Items
         // TODO: db should probably have a "lookup" table for the Temperture buckets/categories
         public Temperature Temperature { get; set; }
 
+        public bool IsRain { get; set; }
+
+        public bool IsWindy { get; set; }
+
         public decimal Weight { get; set; }
 
         public decimal Length { get; set; }
