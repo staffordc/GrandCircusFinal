@@ -16,6 +16,7 @@ namespace GCFinal.Data
                 IsDaily = false,
                 Slot = ItemSlot.Top,
                 Temperature = Temperature.Hot,
+                Temperature2 = Temperature.Warm,
                 IsRain = false,
                 IsWindy = false,
                 Length = 13M,
@@ -29,7 +30,7 @@ namespace GCFinal.Data
                 Name = "Long Sleeve Shirt",
                 IsDaily = false,
                 Slot = ItemSlot.Top,
-                Temperature = Temperature.Mild,
+                Temperature = Temperature.Warm,
                 IsRain = false,
                 IsWindy = false,
                 Length = 13M,
@@ -57,7 +58,9 @@ namespace GCFinal.Data
                 Name = "Pants",
                 IsDaily = false,
                 Slot = ItemSlot.Bottom,
-                Temperature = Temperature.Mild,
+                Temperature = Temperature.Warm,
+                Temperature2 = Temperature.Cool,
+                Temperature3 = Temperature.Cold,
                 IsRain = false,
                 IsWindy = false,
                 Length = 10.5M,
@@ -68,7 +71,7 @@ namespace GCFinal.Data
 
             context.Items.Add(new Item()
             {
-                Name = "Sweater",
+                Name = "Sweater/Hoodie",
                 IsDaily = false,
                 Slot = ItemSlot.TopOuter,
                 Temperature = Temperature.Cold,
@@ -77,22 +80,7 @@ namespace GCFinal.Data
                 Length = 10M,
                 Width = 11.5M,
                 Height = 1.7M,
-                Weight = 14M
-            });
-
-            context.Items.Add(new Item()
-            {
-                Name = "Hoodie",
-                IsDaily = false,
-                Slot = ItemSlot.TopOuter,
-                Temperature = Temperature.Cool,
-                IsRain = false,
-                IsWindy = false,
-                Length = 12M,
-                Width = 11M,
-                Height = 2.675M,
-                Weight = 32M
-
+                Weight = 20M
             });
 
             context.Items.Add(new Item()
@@ -100,7 +88,7 @@ namespace GCFinal.Data
                 Name = "Socks",
                 IsDaily = true,
                 Slot = ItemSlot.FeetInner,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = false,
                 IsWindy = false,
                 Length = 9M,
@@ -114,7 +102,7 @@ namespace GCFinal.Data
                 Name = "Bottom Undergarment",
                 IsDaily = true,
                 Slot = ItemSlot.BottomInner,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = false,
                 IsWindy = false,
                 Length = 4.5M,
@@ -128,7 +116,7 @@ namespace GCFinal.Data
                 Name = "Top Undergarment",
                 IsDaily = true,
                 Slot = ItemSlot.TopInner,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = false,
                 IsWindy = false,
                 Length = 4.5M,
@@ -198,7 +186,7 @@ namespace GCFinal.Data
                 Name = "Raincoat",
                 IsDaily = false,
                 Slot = ItemSlot.TopExterior,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = true,
                 IsWindy = true,
                 Length = 10M,
@@ -212,7 +200,7 @@ namespace GCFinal.Data
                 Name = "Umbrella",
                 IsDaily = false,
                 Slot = ItemSlot.Accessory,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = true,
                 IsWindy = false,
                 Length = 9M,
@@ -226,7 +214,7 @@ namespace GCFinal.Data
                 Name = "Shoes",
                 IsDaily = false,
                 Slot = ItemSlot.Feet,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = false,
                 Length = 11M,
                 Width = 4M,
@@ -239,7 +227,7 @@ namespace GCFinal.Data
                 Name = "Toiletries Bag",
                 IsDaily = true,
                 Slot = ItemSlot.Accessory,
-                Temperature = Temperature.Mild,
+                Temperature = null,
                 IsRain = false,
                 Length = 9M,
                 Width = 4M,
