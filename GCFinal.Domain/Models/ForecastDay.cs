@@ -5,10 +5,15 @@ namespace GCFinal.Domain.Models
 {
     public class ForecastDay
     {
-        public string date { get; set; }
-        public int date_epoch { get; set; }
-        public Day day { get; set; }
-        public Astro astro { get; set; }
-        public List<Hour> hour { get; set; }
+        [JsonProperty("date")]
+        public string Date { get; set; }
+        [JsonProperty("date_epoch")]
+        public decimal DateEpoch { get; set; }
+        [JsonProperty("day")]
+        public Day Day { get; set; }
+        [JsonProperty("astro")]
+        public Astro Astro { get; set; }
+        [JsonProperty("hour")]
+        public List<Hour> Hours { get; set; }
     }
 }

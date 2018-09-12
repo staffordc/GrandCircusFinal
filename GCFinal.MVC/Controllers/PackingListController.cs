@@ -32,12 +32,12 @@ namespace GCFinal.MVC.Controllers
             int duration)
         {
             var weatherObject = await _weatherClient.GetHistoricalWeather(location, startDate, duration);
-            var avgPrecipitationMillimeters = decimal.Round((weatherObject.SelectMany(x => x.hour).Select(x => x.precip_mm).Sum() / weatherObject.Count), 2, MidpointRounding.AwayFromZero);
-            var avgWindSpeedMph = decimal.Round((weatherObject.SelectMany(x => x.hour).Select(x => x.wind_mph).Sum() / weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
-            var avgDailyHighTempF = decimal.Round((weatherObject.Select(x => x.day).Select(x => x.maxtemp_f).Average()), 2, MidpointRounding.AwayFromZero);
-            var avgDailyLowTempF = decimal.Round((weatherObject.Select(x => x.day).Select(x => x.mintemp_f).Average()));
-            var avgDailyAvgTempF = decimal.Round((weatherObject.Select(x => x.day).Select(x => x.avgtemp_f).Average()), 2, MidpointRounding.AwayFromZero);
-            var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.hour).Select(x => x.humidity).Sum() /
+            var avgPrecipitationMillimeters = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.PrecipMm).Sum() / weatherObject.Count), 2, MidpointRounding.AwayFromZero);
+            var avgWindSpeedMph = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.WindMph).Sum() / weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
+            var avgDailyHighTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.MaxTempF).Average()), 2, MidpointRounding.AwayFromZero);
+            var avgDailyLowTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.MinTempF).Average()));
+            var avgDailyAvgTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.AvgTempF).Average()), 2, MidpointRounding.AwayFromZero);
+            var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.Humidity).Sum() /
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
             var itemsToPack =
                 await _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph)

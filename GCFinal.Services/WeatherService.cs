@@ -1,5 +1,6 @@
 ﻿using GCFinal.Domain.Data;
 using GCFinal.Domain.Models;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,11 @@ namespace GCFinal.Services
             var beginDate = startDate.ToString("yyyy/MM/dd");
             var endDate = startDate.AddDays(duration-1).ToString("yyyy/MM/dd");
             var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
-            var response = await _client.ExecuteTaskAsync<RootObject>(request);
-            return response.Data.forecast.forecastday;
+
+            var response = await _client.ExecuteTaskAsync(request);
+            
+            var data = JsonConvert.DeserializeObject<RootObject>(response.Content);
+            return data.Forecast.ForecastDay;
         }
 
     }
