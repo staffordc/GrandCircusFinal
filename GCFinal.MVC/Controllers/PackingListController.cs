@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using GCFinal.Domain.Models.Items;
+using WebGrease.Css.Extensions;
 
 namespace GCFinal.MVC.Controllers
 {
@@ -40,8 +41,7 @@ namespace GCFinal.MVC.Controllers
             var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.Humidity).Sum() /
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
             var itemsToPack =
-                await _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph)
-                    .ToListAsync();
+                _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph);
             var vm = new WeatherViewModel()
             {
                 AvgPrecip = avgPrecipitationMillimeters,
@@ -50,9 +50,9 @@ namespace GCFinal.MVC.Controllers
                 DailyMinTemp = avgDailyLowTempF,
                 DailyAvgTemp = avgDailyAvgTempF,
                 AvgHumidity = avgHumidityPercent,
-                ItemName = itemsToPack
+                ItemName = itemsToPack.ToList()
             };
-            return RedirectToAction("Result", vm);
+            return View("Result", vm);
         }
 
         public ActionResult Result(WeatherViewModel model)
