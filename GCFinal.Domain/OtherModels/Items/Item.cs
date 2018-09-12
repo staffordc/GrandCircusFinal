@@ -14,7 +14,11 @@ namespace GCFinal.Domain.Models.Items
         public ItemSlot Slot { get; set; }
 
         // TODO: db should probably have a "lookup" table for the Temperture buckets/categories
-        public Temperature Temperature { get; set; }
+        public Temperature? Temperature { get; set; }
+
+        public Temperature? Temperature2 { get; set; }
+
+        public Temperature? Temperature3 { get; set; }
 
         public bool IsRain { get; set; }
 
