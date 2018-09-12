@@ -9,6 +9,6 @@ namespace GCFinal.Domain.Models
         [JsonProperty("icon")]
         public string Icon { get; set; }
         [JsonProperty("code")]
-        public int Code { get; set; }
+        public decimal Code { get; set; }
     }
 }

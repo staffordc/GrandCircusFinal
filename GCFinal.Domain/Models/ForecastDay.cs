@@ -8,7 +8,7 @@ namespace GCFinal.Domain.Models
         [JsonProperty("date")]
         public string Date { get; set; }
         [JsonProperty("date_epoch")]
-        public int DateEpoch { get; set; }
+        public decimal DateEpoch { get; set; }
         [JsonProperty("day")]
         public Day Day { get; set; }
         [JsonProperty("astro")]

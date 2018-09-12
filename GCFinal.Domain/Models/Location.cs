@@ -11,13 +11,13 @@ namespace GCFinal.Domain.Models
         [JsonProperty("country")]
         public string Country { get; set; }
         [JsonProperty("lat")]
-        public double Lat { get; set; }
+        public decimal Lat { get; set; }
         [JsonProperty("lon")]
-        public double Lon { get; set; }
+        public decimal Lon { get; set; }
         [JsonProperty("tz_id")]
         public string TzId { get; set; }
         [JsonProperty("localtime_epoch")]
-        public int LocaltimeEpoch { get; set; }
+        public decimal LocaltimeEpoch { get; set; }
         [JsonProperty("localtime")]
         public string Localtime { get; set; }
     }

@@ -32,7 +32,7 @@ namespace GCFinal.MVC.Tests
         public void ForcastDay_Can_DeserializeHoursProp_Given_New_Payload()
         {
             var result = JsonConvert.DeserializeObject<RootObject>(ApiPayload);
-        Assert.NotNull(result);
+            Assert.NotNull(result);
         }
     }
 }
