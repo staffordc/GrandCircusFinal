@@ -12,6 +12,6 @@ namespace GCFinal.MVC.Models
         public decimal AvgWind { get; set; }
         public decimal AvgPrecip { get; set; }
         public decimal AvgHumidity { get; set; }
-        public List<object> ItemName { get; set; }
+        public List<Item> ItemName { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GCFinal.Data;
 using GCFinal.Domain.Models.PackingModels;
 using System.Linq;
+using GCFinal.Domain.Models.Items;
 
 namespace GCFinal.Services
 {
@@ -10,7 +11,7 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public IQueryable ItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
+        public IQueryable<Item> ItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);
             bool isPrecipitating = IsPrecipitating(rainAvg);
@@ -34,7 +35,7 @@ namespace GCFinal.Services
             }
         }
 
-        private IQueryable GetHotClothes(Temperature hot, bool isRain)
+        private IQueryable<Item> GetHotClothes(Temperature hot, bool isRain)
         {
             if (isRain)
             {
@@ -43,7 +44,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Temperature == hot || x.IsDaily == true);
         }
 
-        private IQueryable GetWarmClothes(Temperature warm, bool isRain, bool isWind)
+        private IQueryable<Item> GetWarmClothes(Temperature warm, bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -58,7 +59,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Temperature == warm || x.IsDaily == true);
         }
 
-        private IQueryable GetCoolClothes(Temperature cool, bool isRain, bool isWind)
+        private IQueryable<Item> GetCoolClothes(Temperature cool, bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -73,7 +74,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Temperature == cool || x.IsDaily == true);
         }
 
-        private IQueryable GetColdClothes(Temperature cold)
+        private IQueryable<Item> GetColdClothes(Temperature cold)
         {
             return db.Items.Where(x => x.Temperature == cold || x.IsDaily == true);
         }
