@@ -1,0 +1,69 @@
+﻿@model GCFinal.MVC.Models.WeatherViewModel
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+<p>Based on historical data from the past three years</p>
+<table class="table">
+    <tr>
+        <th>
+            Daily Max Temp (&#8457;) 
+        </th>
+        <th>
+            Daily Min Temp (&#8457;)
+        </th>
+        <th>
+            Daily Avg Temp (&#8457;)
+        </th>
+        <th>
+            Avg Precip (mm)  
+        </th>
+        <th>
+            Avg Wind Speed (Mph)
+        </th>
+        <th>
+            Avg Humidity %   
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(item => item.DailyMaxTemp)  
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.DailyMinTemp)  
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.DailyAvgTemp)  
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.AvgPrecip)  
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.AvgWind)  
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.AvgHumidity)  
+        </td>
+    </tr>
+</table >
+
+<h3>We think that you should bring these items!</h3>
+<br/>
+<table class="table">
+    
+    <tr>
+        <th>Quantity</th>
+        <th>Items</th>
+    </tr>
+
+    @foreach (var item in Model.PackingItems)
+     {
+        <tr>
+            <td>@item.Quantity</td>
+            <td>@item.Name</td>
+            
+        </tr>
+     }
+    </table>

@@ -1,0 +1,49 @@
+﻿@model GCFinal.MVC.Models.SearchModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section Scripts{@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")}
+<div class="jumbotron">
+    <h1>Welcome to What2Pack?</h1>
+    <h3>Your source to determine what should be packed based on historical weather data</h3>
+</div>
+
+
+<p>To begin, please enter some basic information about your trip</p>
+@using (@Html.BeginForm("GetWeatherObject", "PackingList", FormMethod.Post))
+{
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
+
+    <div class="row">
+        <div class="col-md-2">
+            <label>Location:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(firstName => Model.Location)
+            @Html.ValidationMessageFor(firstName => Model.Location, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Start Date:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(lastName => Model.StartDate)
+            @Html.ValidationMessageFor(lastName => Model.StartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Duration:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(birthday => Model.Duration)
+            @Html.ValidationMessageFor(birthday => Model.Duration, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <input type="submit" value="Search" />
+}
