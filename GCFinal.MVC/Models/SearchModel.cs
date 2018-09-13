@@ -14,7 +14,7 @@ namespace GCFinal.MVC.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime StartDate { get; set; }
         [Required]
-        [Range(-30,30,ErrorMessage = "Please only plan for a 30d day month long trip")]
+        [Range(1, 30, ErrorMessage = "Enter a trip length between 1 and 30 days")]
         [Display(Name = "Number of Days Vacationing")]
         public int Duration { get; set; }
         

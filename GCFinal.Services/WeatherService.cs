@@ -22,7 +22,7 @@ namespace GCFinal.Services
         public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
             var beginDate = startDate.ToString("yyyy/MM/dd");
-            var endDate = startDate.AddDays(Math.Abs(duration-1)).ToString("yyyy/MM/dd");
+            var endDate = startDate.AddDays(duration-1).ToString("yyyy/MM/dd");
             var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
 
             var response = await _client.ExecuteTaskAsync(request);
