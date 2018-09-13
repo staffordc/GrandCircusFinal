@@ -1,6 +1,4 @@
-﻿using GCFinal.Domain.Models.PackingModels;
-
-namespace GCFinal.Domain.Models.Items
+﻿namespace GCFinal.Domain.Models.Items
 {
     public class Item
     {
@@ -8,21 +6,23 @@ namespace GCFinal.Domain.Models.Items
 
         public string Name { get; set; }
 
-        public bool IsDaily { get; set; }
+        public bool Hot { get; set; }
 
-        // TODO: maybe have a "lookup" table for Slot that has the Id, Name, and IsRequiredForOutfit?
-        public ItemSlot Slot { get; set; }
+        public bool Warm { get; set; }
 
-        // TODO: db should probably have a "lookup" table for the Temperture buckets/categories
-        public Temperature? Temperature { get; set; }
+        public bool Cool { get; set; }
 
-        public Temperature? Temperature2 { get; set; }
-
-        public Temperature? Temperature3 { get; set; }
+        public bool Cold { get; set; }
 
         public bool IsRain { get; set; }
 
         public bool IsWindy { get; set; }
+
+        public bool IsDaily { get; set; }
+
+        public bool IsEssential { get; set; }
+
+        public bool IsBulk { get; set; }
 
         public decimal Weight { get; set; }
 
