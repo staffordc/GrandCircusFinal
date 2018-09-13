@@ -1,5 +1,6 @@
 ﻿using GCFinal.Data.Maps;
 using GCFinal.Domain.Models.Items;
+using GCFinal.Domain.Models.PackingModels;
 using System.Data.Entity;
 
 namespace GCFinal.Data
@@ -12,10 +13,12 @@ namespace GCFinal.Data
         }
 
         public IDbSet<Item> Items { get; set; }
+        public IDbSet<PackingItem> PackingItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new PackingMap());
+            modelBuilder.Configurations.Add(new ItemMap());
+            modelBuilder.Configurations.Add(new PackingItemMap());
             base.OnModelCreating(modelBuilder);
         }
     }

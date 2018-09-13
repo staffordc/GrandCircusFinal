@@ -50,12 +50,16 @@
 </table>
 <table>
     <tr>
+        <th>Quantity</th>
         <th>Items</th>
     </tr>
-    <tr>
-        @foreach (var item in Model.ItemName)
-        {
+
+    @foreach (var item in Model.PackingItems)
+     {
+        <tr>
+            <td>@item.Quantity</td>
             <td>@item.Name</td>
-        }
-    </tr>
-</table>
+            
+        </tr>
+     }
+    </table>

@@ -1,6 +1,7 @@
 ﻿using GCFinal.Data;
 using GCFinal.Domain.Models.Items;
 using GCFinal.Domain.Models.PackingModels;
+using System;
 using System.Linq;
 
 namespace GCFinal.Services
@@ -11,7 +12,113 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public IQueryable<Item> ItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
+        public IQueryable<PackingItem> PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration)
+        {
+            var clothes = GetItemsToPack(tempAvg, rainAvg, windAvg);
+            if (duration <= 7)
+            {
+                foreach (var cloth in clothes)
+                {
+                    if (cloth.IsBulk)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = Math.Ceiling(duration / 3)
+                        });
+                    }
+
+                    if (cloth.IsDaily)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = duration
+                        });
+                    }
+
+                    if (cloth.IsEssential)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 1
+                        });
+                    }
+                }
+            }
+
+            if (duration > 7)
+            {
+                foreach (var cloth in clothes)
+                {
+                    if (cloth.IsBulk)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 3
+                        });
+                    }
+
+                    if (cloth.IsDaily)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 7
+                        });
+                    }
+
+                    if (cloth.IsEssential)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 1
+                        });
+                    }
+                }
+            }
+            db.SaveChanges();
+            return db.PackingItems;
+        }
+
+        public void EmptyPackingItems()
+        {
+            var clothes = db.PackingItems;
+            foreach(var cloth in clothes)
+            {
+                db.PackingItems.Remove(cloth);
+            }
+            db.SaveChanges();
+        }
+
+        public IQueryable<Item> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);
             bool isPrecipitating = IsPrecipitating(rainAvg);
@@ -81,7 +188,7 @@ namespace GCFinal.Services
 
         public bool IsPrecipitating(decimal rainValue)
         {
-            if (rainValue > 10)
+            if (rainValue > 6)
             {
                 return true;
             }
@@ -90,7 +197,7 @@ namespace GCFinal.Services
 
         public bool IsWindy(decimal windValue)
         {
-            if (windValue > 10)
+            if (windValue > 15)
             {
                 return true;
             }

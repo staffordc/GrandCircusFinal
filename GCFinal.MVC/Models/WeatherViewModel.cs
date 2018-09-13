@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GCFinal.Domain.Models.Items;
+using GCFinal.Domain.Models.PackingModels;
 
 namespace GCFinal.MVC.Models
 {
@@ -12,6 +12,6 @@ namespace GCFinal.MVC.Models
         public decimal AvgWind { get; set; }
         public decimal AvgPrecip { get; set; }
         public decimal AvgHumidity { get; set; }
-        public List<Item> ItemName { get; set; }
+        public List<PackingItem> PackingItems { get; set; }
     }
 }

@@ -3,18 +3,14 @@ using GCFinal.MVC.Client;
 using GCFinal.MVC.Models;
 using GCFinal.Services;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using GCFinal.Domain.Models.Items;
-using WebGrease.Css.Extensions;
 
 namespace GCFinal.MVC.Controllers
 {
     public class PackingListController : Controller
     {
-        private readonly GCFinalContext db = new GCFinalContext();
         private readonly WeatherClient _weatherClient;
         private readonly TripPackingService _tripPackingService;
 
@@ -40,8 +36,9 @@ namespace GCFinal.MVC.Controllers
             var avgDailyAvgTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.AvgTempF).Average()), 2, MidpointRounding.AwayFromZero);
             var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.Humidity).Sum() /
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
+            var durationDeciaml = Convert.ToDecimal(duration);
             var itemsToPack =
-                _tripPackingService.ItemsToPack(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph);
+                _tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, durationDeciaml);
             var vm = new WeatherViewModel()
             {
                 AvgPrecip = avgPrecipitationMillimeters,
@@ -50,7 +47,7 @@ namespace GCFinal.MVC.Controllers
                 DailyMinTemp = avgDailyLowTempF,
                 DailyAvgTemp = avgDailyAvgTempF,
                 AvgHumidity = avgHumidityPercent,
-                ItemName = itemsToPack.ToList()
+                PackingItems = itemsToPack.ToList()
             };
             return View("Result", vm);
         }

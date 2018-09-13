@@ -13,7 +13,7 @@ namespace GCFinal.Data
             {
                 Name = "Short Sleeve Shirt",
                 Hot = true,
-                Warm = false,
+                Warm = true,
                 Cool = false,
                 Cold = false,
                 IsRain = false,
@@ -31,7 +31,7 @@ namespace GCFinal.Data
             {
                 Name = "Long Sleeve Shirt",
                 Hot = false,
-                Warm = true,
+                Warm = false,
                 Cool = true,
                 Cold = true,
                 IsRain = false,

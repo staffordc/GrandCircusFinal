@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GCFinal.Data;
+using GCFinal.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,16 @@ namespace GCFinal.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private Data.GCFinalContext db = new GCFinalContext();
+        private readonly TripPackingService _tripPackingService = new TripPackingService();
+
         public ActionResult Index()
         {
+            if(db.PackingItems != null)
+            {
+                _tripPackingService.EmptyPackingItems();
+            }
+
             return View();
         }
 
