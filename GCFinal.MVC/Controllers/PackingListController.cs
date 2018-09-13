@@ -48,7 +48,7 @@ namespace GCFinal.MVC.Controllers
                 DailyMinTemp = avgDailyLowTempF,
                 DailyAvgTemp = avgDailyAvgTempF,
                 AvgHumidity = avgHumidityPercent,
-                ItemName = itemsToPack.ToList()
+                PackingItems = itemsToPack.ToList()
             };
             return View("Result", vm);
         }

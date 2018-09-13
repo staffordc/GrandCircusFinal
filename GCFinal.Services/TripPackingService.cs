@@ -58,11 +58,55 @@ namespace GCFinal.Services
                         });
                     }
                 }
-
-                db.SaveChanges();
             }
-        }
 
+            if (duration > 7)
+            {
+                foreach (var cloth in clothes)
+                {
+                    if (cloth.IsBulk)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 3
+                        });
+                    }
+
+                    if (cloth.IsDaily)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 7
+                        });
+                    }
+
+                    if (cloth.IsEssential)
+                    {
+                        db.PackingItems.Add(new PackingItem()
+                        {
+                            Name = cloth.Name,
+                            Height = cloth.Height,
+                            Length = cloth.Length,
+                            Width = cloth.Width,
+                            Weight = cloth.Weight,
+                            Quantity = 1
+                        });
+                    }
+                }
+            }
+            db.SaveChanges();
+            return db.PackingItems;
+        }
 
         public IQueryable<Item> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
@@ -134,7 +178,7 @@ namespace GCFinal.Services
 
         public bool IsPrecipitating(decimal rainValue)
         {
-            if (rainValue > 10)
+            if (rainValue > 6)
             {
                 return true;
             }
@@ -143,7 +187,7 @@ namespace GCFinal.Services
 
         public bool IsWindy(decimal windValue)
         {
-            if (windValue > 10)
+            if (windValue > 15)
             {
                 return true;
             }
