@@ -108,6 +108,16 @@ namespace GCFinal.Services
             return db.PackingItems;
         }
 
+        public void EmptyPackingItems()
+        {
+            var clothes = db.PackingItems;
+            foreach(var cloth in clothes)
+            {
+                db.PackingItems.Remove(cloth);
+            }
+            db.SaveChanges();
+        }
+
         public IQueryable<Item> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);

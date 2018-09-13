@@ -11,7 +11,6 @@ namespace GCFinal.MVC.Controllers
 {
     public class PackingListController : Controller
     {
-        private readonly GCFinalContext db = new GCFinalContext();
         private readonly WeatherClient _weatherClient;
         private readonly TripPackingService _tripPackingService;
 
