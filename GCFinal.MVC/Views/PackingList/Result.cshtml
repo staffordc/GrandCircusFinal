@@ -63,7 +63,16 @@
         <tr>
             <td>@item.Quantity</td>
             <td>@item.Name</td>
-            
+           
         </tr>
      }
     </table>
+<p>
+    @foreach (var result in Model.ContainerPackingResults)
+    {
+        @foreach (var item in result.AlgorithmPackingResults)
+        {
+            @item.IsCompletePack
+        }
+    }
+</p>
