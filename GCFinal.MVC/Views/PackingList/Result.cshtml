@@ -67,12 +67,19 @@
         </tr>
      }
     </table>
-<p>
     @foreach (var result in Model.ContainerPackingResults)
-    {
-        @foreach (var item in result.AlgorithmPackingResults)
+     {
+        foreach (var item in result.AlgorithmPackingResults)
         {
-            @item.IsCompletePack
+            <p>@item.IsCompletePack IsCompletePack</p>
+            <p>@item.PercentContainerVolumePacked % of container packed</p>
+            <p>@item.PercentItemVolumePacked % of items packed</p>
+            <p>@item.PackTimeInMilliseconds packed time</p>
+            
+            foreach (var thing in item.UnpackedItems)
+            {
+                <p>@thing.Name things not packed</p>
+                <p>@thing.Quantity quantity</p>
+            }
         }
     }
-</p>

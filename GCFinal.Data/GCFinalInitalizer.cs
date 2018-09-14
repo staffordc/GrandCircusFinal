@@ -23,7 +23,7 @@ namespace GCFinal.Data
                 IsEssential = false,
                 Length = 13M,
                 Width = 10M,
-                Height = 0.326M,
+                Height = 0.3M,
                 Weight = 8.5M
             });
 
@@ -41,7 +41,7 @@ namespace GCFinal.Data
                 IsEssential = false,
                 Length = 13M,
                 Width = 10M,
-                Height = 0.326M,
+                Height = 0.3M,
                 Weight = 8.5M
             });
 
@@ -57,9 +57,9 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = true,
                 IsEssential = false,
-                Length = 10.5M,
+                Length = 10M,
                 Width = 11M,
-                Height = 0.92M,
+                Height = 0.9M,
                 Weight = 16.9M
             });
 
@@ -75,9 +75,9 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = true,
                 IsEssential = false,
-                Length = 10.5M,
+                Length = 10M,
                 Width = 11M,
-                Height = 1.62M,
+                Height = 1.6M,
                 Weight = 22.9M
             });
 
@@ -147,9 +147,9 @@ namespace GCFinal.Data
                 IsDaily = true,
                 IsBulk = false,
                 IsEssential = false,
-                Length = 4.5M,
-                Width = 7.7M,
-                Height = .45M,
+                Length = 4M,
+                Width = 7M,
+                Height = .4M,
                 Weight = 2.46M
             });
 
@@ -165,9 +165,9 @@ namespace GCFinal.Data
                 IsDaily = true,
                 IsBulk = false,
                 IsEssential = false,
-                Length = 4.5M,
-                Width = 7.7M,
-                Height = .45M,
+                Length = 4M,
+                Width = 7M,
+                Height = .4M,
                 Weight = 2.46M
             });
 
@@ -273,9 +273,9 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = false,
                 IsEssential = true,
-                Length = 9M,
-                Width = 2.5M,
-                Height = 2.5M,
+                Length = 8M,
+                Width = 2M,
+                Height = 2M,
                 Weight = 10M
             });
 

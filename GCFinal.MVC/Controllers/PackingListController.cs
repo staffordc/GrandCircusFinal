@@ -43,11 +43,11 @@ namespace GCFinal.MVC.Controllers
             var itemsToPack =
                 _tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, durationDeciaml).ToList();
             List<Container> containers = new List<Container>();
-            containers.Add(new Container(1, 19, 14.5m, 9.8m));
-            List<Item> itemsToContainer = new List<Item>();
+            containers.Add(new Container(1, 20.5M, 15M, 8M)); //samsonite 21" Spinner
+            List<Item> itemsToContainer = new List<Item>();   //samsonite 27" Spinner (27M, 18.5M,9.5M)
             foreach (var item in itemsToPack)
             {
-                itemsToContainer.Add(new Item(item.Id, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
+                itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
             }
             List<int> algorithms = new List<int>();
             algorithms.Add((int)AlgorithmType.EB_AFIT);

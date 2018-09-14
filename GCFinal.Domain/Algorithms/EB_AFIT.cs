@@ -535,7 +535,7 @@ namespace GCFinal.Domain.Algorithms
 
                 // The original code uses 1-based indexing everywhere. This fake entry is added to the beginning
                 // of the list to make that possible.
-                itemsToPack.Add(new Item(0, 0, 0, 0, 0));
+                itemsToPack.Add(new Item("", 0, 0, 0, 0));
 
                 layers = new List<Layer>();
                 itemsToPackCount = 0;
@@ -544,14 +544,14 @@ namespace GCFinal.Domain.Algorithms
                 {
                     for (int i = 1; i <= item.Quantity; i++)
                     {
-                        Item newItem = new Item(item.ID, item.Dim1, item.Dim2, item.Dim3, item.Quantity);
+                        Item newItem = new Item(item.Name, item.Dim1, item.Dim2, item.Dim3, item.Quantity);
                         itemsToPack.Add(newItem);
                     }
 
                     itemsToPackCount += item.Quantity;
                 }
 
-                itemsToPack.Add(new Item(0, 0, 0, 0, 0));
+                itemsToPack.Add(new Item("", 0, 0, 0, 0));
 
                 totalContainerVolume = container.Length * container.Height * container.Width;
                 totalItemVolume = 0.0M;
