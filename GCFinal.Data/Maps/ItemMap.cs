@@ -5,7 +5,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace GCFinal.Data.Maps
 {
-    class ItemMap : EntityTypeConfiguration<Item>
+    class ItemMap : EntityTypeConfiguration<TripItem>
     {
         public ItemMap()
         {

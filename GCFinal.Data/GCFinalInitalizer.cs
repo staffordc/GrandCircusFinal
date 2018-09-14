@@ -9,7 +9,7 @@ namespace GCFinal.Data
         {
             //Length, Width and Height are Inches
             //Weight is Ounces
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Short Sleeve Shirt",
                 Hot = true,
@@ -23,11 +23,11 @@ namespace GCFinal.Data
                 IsEssential = false,
                 Length = 13M,
                 Width = 10M,
-                Height = 0.326M,
+                Height = 0.3M,
                 Weight = 8.5M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Long Sleeve Shirt",
                 Hot = false,
@@ -41,11 +41,11 @@ namespace GCFinal.Data
                 IsEssential = false,
                 Length = 13M,
                 Width = 10M,
-                Height = 0.326M,
+                Height = 0.3M,
                 Weight = 8.5M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Shorts/Skirts",
                 Hot = true,
@@ -57,13 +57,13 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = true,
                 IsEssential = false,
-                Length = 10.5M,
+                Length = 10M,
                 Width = 11M,
-                Height = 0.92M,
+                Height = 0.9M,
                 Weight = 16.9M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Pants/Jeans",
                 Hot = false,
@@ -75,13 +75,13 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = true,
                 IsEssential = false,
-                Length = 10.5M,
+                Length = 10M,
                 Width = 11M,
-                Height = 1.62M,
+                Height = 1.6M,
                 Weight = 22.9M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Sweater",
                 Hot = false,
@@ -99,7 +99,7 @@ namespace GCFinal.Data
                 Weight = 14M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Hoodie",
                 Hot = false,
@@ -117,7 +117,7 @@ namespace GCFinal.Data
                 Weight = 23M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Socks",
                 Hot = true,
@@ -135,7 +135,7 @@ namespace GCFinal.Data
                 Weight = 1.68M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Underwear",
                 Hot = true,
@@ -147,13 +147,13 @@ namespace GCFinal.Data
                 IsDaily = true,
                 IsBulk = false,
                 IsEssential = false,
-                Length = 4.5M,
-                Width = 7.7M,
-                Height = .45M,
+                Length = 4M,
+                Width = 7M,
+                Height = .4M,
                 Weight = 2.46M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Undershirt/Bra",
                 Hot = true,
@@ -165,13 +165,13 @@ namespace GCFinal.Data
                 IsDaily = true,
                 IsBulk = false,
                 IsEssential = false,
-                Length = 4.5M,
-                Width = 7.7M,
-                Height = .45M,
+                Length = 4M,
+                Width = 7M,
+                Height = .4M,
                 Weight = 2.46M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Jacket",
                 Hot = false,
@@ -189,7 +189,7 @@ namespace GCFinal.Data
                 Weight = 32M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Gloves",
                 Hot = false,
@@ -207,7 +207,7 @@ namespace GCFinal.Data
                 Weight = 1.68M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Hat",
                 Hot = false,
@@ -225,7 +225,7 @@ namespace GCFinal.Data
                 Weight = 1.68M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Scarf",
                 Hot = false,
@@ -243,7 +243,7 @@ namespace GCFinal.Data
                 Weight = 1.68M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Raincoat",
                 Hot = false,
@@ -261,7 +261,7 @@ namespace GCFinal.Data
                 Weight = 8M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Umbrella",
                 Hot = false,
@@ -273,13 +273,13 @@ namespace GCFinal.Data
                 IsDaily = false,
                 IsBulk = false,
                 IsEssential = true,
-                Length = 9M,
-                Width = 2.5M,
-                Height = 2.5M,
+                Length = 8M,
+                Width = 2M,
+                Height = 2M,
                 Weight = 10M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Shoes",
                 Hot = true,
@@ -297,7 +297,7 @@ namespace GCFinal.Data
                 Weight = 12M
             });
 
-            context.Items.Add(new Item()
+            context.Items.Add(new TripItem()
             {
                 Name = "Toiletries Bag",
                 Hot = true,

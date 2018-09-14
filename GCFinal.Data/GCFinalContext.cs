@@ -12,7 +12,7 @@ namespace GCFinal.Data
             Database.SetInitializer(new GCFinalInitalizer());
         }
 
-        public IDbSet<Item> Items { get; set; }
+        public IDbSet<TripItem> Items { get; set; }
         public IDbSet<PackingItem> PackingItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

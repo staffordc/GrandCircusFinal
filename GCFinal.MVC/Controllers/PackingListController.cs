@@ -2,10 +2,13 @@
 using GCFinal.MVC.Client;
 using GCFinal.MVC.Models;
 using GCFinal.Services;
+using GCFinal.Domain.Models.BinPackingModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using GCFinal.Domain.Algorithms;
 
 namespace GCFinal.MVC.Controllers
 {
@@ -38,7 +41,17 @@ namespace GCFinal.MVC.Controllers
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
             var durationDeciaml = Convert.ToDecimal(duration);
             var itemsToPack =
-                _tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, durationDeciaml);
+                _tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, durationDeciaml).ToList();
+            List<Container> containers = new List<Container>();
+            containers.Add(new Container(1, 20.5M, 15M, 8M)); //samsonite 21" Spinner
+            List<Item> itemsToContainer = new List<Item>();   //samsonite 27" Spinner (27M, 18.5M,9.5M)
+            foreach (var item in itemsToPack)
+            {
+                itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
+            }
+            List<int> algorithms = new List<int>();
+            algorithms.Add((int)AlgorithmType.EB_AFIT);
+            var packingResults = PackingService.Pack(containers, itemsToContainer, algorithms);
             var vm = new WeatherViewModel()
             {
                 AvgPrecip = avgPrecipitationMillimeters,
@@ -47,7 +60,8 @@ namespace GCFinal.MVC.Controllers
                 DailyMinTemp = avgDailyLowTempF,
                 DailyAvgTemp = avgDailyAvgTempF,
                 AvgHumidity = avgHumidityPercent,
-                PackingItems = itemsToPack.ToList()
+                PackingItems = itemsToPack,
+                ContainerPackingResults = packingResults
             };
             return View("Result", vm);
         }
