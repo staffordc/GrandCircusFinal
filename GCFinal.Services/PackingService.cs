@@ -73,7 +73,7 @@
 //            return itemsToPack;
 //        }
 
-//        public PackingItem GetItemForSlot(IEnumerable<Item> itemsForSlot, Temperature targetTemperature, bool isRequired)
+//        public PackingItem GetItemForSlot(IEnumerable<TripItem> itemsForSlot, Temperature targetTemperature, bool isRequired)
 //        {
 //            // TODO: this algorithm is untested and a bit janky -I tried to work from the "most extreme" to mild, depending on whether the target temp was more on the warm or cold side.
 //            // write your own way to "pick an item for a slot" based on the target temp
@@ -83,7 +83,7 @@
 //            // * some other custom "how do I pick the most applicable piece?"
 //            bool isColdFirst = targetTemperature <= Temperature.Mild;
 
-//            Item chosen = null;
+//            TripItem chosen = null;
 //            if (isColdFirst)
 //            {
 //                var sorted = itemsForSlot.OrderByDescending(i => i.Temperature);

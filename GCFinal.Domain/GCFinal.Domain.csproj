@@ -41,6 +41,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +54,9 @@
     <Compile Include="Data\IPackingService.cs" />
     <Compile Include="Data\IWeatherService.cs" />
     <Compile Include="Models\Astro.cs" />
+    <Compile Include="Models\BinPackingModels\AlgorithmPackingResult.cs" />
+    <Compile Include="Models\BinPackingModels\Container.cs" />
+    <Compile Include="Models\BinPackingModels\Item.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\Condition2.cs" />
     <Compile Include="Models\Day.cs" />
@@ -61,7 +65,7 @@
     <Compile Include="Models\Hour.cs" />
     <Compile Include="OtherModels\Items\IItemRepository.cs" />
     <Compile Include="OtherModels\Items\Implementation\ItemsRepository.cs" />
-    <Compile Include="OtherModels\Items\Item.cs" />
+    <Compile Include="OtherModels\Items\TripItem.cs" />
     <Compile Include="OtherModels\Items\ItemSlot.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="OtherModels\PackingModels\DayInfo.cs" />

@@ -118,7 +118,7 @@ namespace GCFinal.Services
             db.SaveChanges();
         }
 
-        public IQueryable<Item> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
+        public IQueryable<TripItem> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);
             bool isPrecipitating = IsPrecipitating(rainAvg);
@@ -142,7 +142,7 @@ namespace GCFinal.Services
             }
         }
 
-        private IQueryable<Item> GetHotClothes(bool isRain)
+        private IQueryable<TripItem> GetHotClothes(bool isRain)
         {
             if (isRain)
             {
@@ -151,7 +151,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Hot == true);
         }
 
-        private IQueryable<Item> GetWarmClothes(bool isRain, bool isWind)
+        private IQueryable<TripItem> GetWarmClothes(bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -166,7 +166,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Warm == true);
         }
 
-        private IQueryable<Item> GetCoolClothes(bool isRain, bool isWind)
+        private IQueryable<TripItem> GetCoolClothes(bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -181,7 +181,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Cool == true);
         }
 
-        private IQueryable<Item> GetColdClothes()
+        private IQueryable<TripItem> GetColdClothes()
         {
             return db.Items.Where(x => x.Cold == true);
         }

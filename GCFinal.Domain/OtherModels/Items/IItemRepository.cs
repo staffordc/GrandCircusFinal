@@ -8,8 +8,8 @@ namespace GCFinal.Domain.Models.Items
 {
     public interface IItemRepository
     {
-        IEnumerable<Item> GetDailyItems();
+        IEnumerable<TripItem> GetDailyItems();
 
-        IEnumerable<Item> GetTripItems();
+        IEnumerable<TripItem> GetTripItems();
     }
 }

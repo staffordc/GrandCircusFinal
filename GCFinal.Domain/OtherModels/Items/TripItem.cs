@@ -1,6 +1,6 @@
 ﻿namespace GCFinal.Domain.Models.Items
 {
-    public class Item
+    public class TripItem
     {
         public int Id { get; set; }
 
