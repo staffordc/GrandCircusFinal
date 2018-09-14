@@ -51,11 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AlgorithmBase.cs" />
+    <Compile Include="Algorithms\AlgorithmType.cs" />
+    <Compile Include="Algorithms\EB_AFIT.cs" />
+    <Compile Include="Algorithms\IPackingAlgorithm.cs" />
     <Compile Include="Data\IPackingService.cs" />
     <Compile Include="Data\IWeatherService.cs" />
     <Compile Include="Models\Astro.cs" />
     <Compile Include="Models\BinPackingModels\AlgorithmPackingResult.cs" />
     <Compile Include="Models\BinPackingModels\Container.cs" />
+    <Compile Include="Models\BinPackingModels\ContainerPackingResult.cs" />
     <Compile Include="Models\BinPackingModels\Item.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\Condition2.cs" />

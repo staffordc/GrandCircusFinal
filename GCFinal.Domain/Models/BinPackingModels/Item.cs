@@ -7,7 +7,7 @@ namespace GCFinal.Domain.Models.BinPackingModels
     {
         private decimal volume;
 
-        public Item(int id, decimal dim1, decimal dim2, decimal dim3, decimal quantity)
+        public Item(int id, decimal dim1, decimal dim2, decimal dim3, int quantity)
         {
             this.ID = id;
             this.Dim1 = dim1;
@@ -41,7 +41,7 @@ namespace GCFinal.Domain.Models.BinPackingModels
         [DataMember]
         public decimal CoordZ { get; set; }
 
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [DataMember]
         public decimal PackDimX { get; set; }
