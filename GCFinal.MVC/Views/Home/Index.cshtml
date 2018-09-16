@@ -22,8 +22,8 @@
             <label>Location:</label>
         </div>
         <div class="col-md-10">
-            @Html.EditorFor(firstName => Model.Location)
-            @Html.ValidationMessageFor(firstName => Model.Location, "", new { @class = "text-danger" })
+            @Html.EditorFor(location => Model.Location)
+            @Html.ValidationMessageFor(location => Model.Location, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row">
@@ -31,8 +31,8 @@
             <label>Start Date:</label>
         </div>
         <div class="col-md-10">
-            @Html.EditorFor(lastName => Model.StartDate)
-            @Html.ValidationMessageFor(lastName => Model.StartDate, "", new { @class = "text-danger" })
+            @Html.EditorFor(startDate => Model.StartDate)
+            @Html.ValidationMessageFor(startDate => Model.StartDate, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row">
@@ -40,8 +40,8 @@
             <label>Duration:</label>
         </div>
         <div class="col-md-10">
-            @Html.EditorFor(birthday => Model.Duration)
-            @Html.ValidationMessageFor(birthday => Model.Duration, "", new { @class = "text-danger" })
+            @Html.EditorFor(duration => Model.Duration)
+            @Html.ValidationMessageFor(duration => Model.Duration, "", new { @class = "text-danger" })
         </div>
     </div>
     

@@ -28,10 +28,11 @@ namespace GCFinal.MVC.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetWeatherObject(string location, DateTime startDate,
-            int duration)
+        public async Task<ActionResult> GetWeatherObject(SearchModel model)
         {
-            var weatherObject = await _weatherClient.GetHistoricalWeather(location, startDate, duration);
+            if (ModelState.IsValid)
+            { 
+            var weatherObject = await _weatherClient.GetHistoricalWeather(model.Location, model.StartDate, model.Duration);
             var avgPrecipitationMillimeters = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.PrecipMm).Sum() / weatherObject.Count), 2, MidpointRounding.AwayFromZero);
             var avgWindSpeedMph = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.WindMph).Sum() / weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
             var avgDailyHighTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.MaxTempF).Average()), 2, MidpointRounding.AwayFromZero);
@@ -39,7 +40,7 @@ namespace GCFinal.MVC.Controllers
             var avgDailyAvgTempF = decimal.Round((weatherObject.Select(x => x.Day).Select(x => x.AvgTempF).Average()), 2, MidpointRounding.AwayFromZero);
             var avgHumidityPercent = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.Humidity).Sum() /
                                                     weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
-            var durationDeciaml = Convert.ToDecimal(duration);
+            var durationDeciaml = Convert.ToDecimal(model.Duration);
             var itemsToPack =
                 _tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, durationDeciaml).ToList();
             List<Container> containers = new List<Container>();
@@ -64,6 +65,9 @@ namespace GCFinal.MVC.Controllers
                 ContainerPackingResults = packingResults
             };
             return View("Result", vm);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Result(WeatherViewModel model)
