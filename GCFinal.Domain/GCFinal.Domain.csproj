@@ -73,7 +73,6 @@
     <Compile Include="OtherModels\Items\TripItem.cs" />
     <Compile Include="OtherModels\Items\ItemSlot.cs" />
     <Compile Include="Models\Location.cs" />
-    <Compile Include="OtherModels\PackingModels\DayInfo.cs" />
     <Compile Include="OtherModels\PackingModels\PackingItem.cs" />
     <Compile Include="OtherModels\PackingModels\Temperature.cs" />
     <Compile Include="Models\RootObject.cs" />

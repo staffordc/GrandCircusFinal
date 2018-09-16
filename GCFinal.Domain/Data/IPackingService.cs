@@ -5,7 +5,7 @@ namespace GCFinal.Domain.Data
 {
     public interface IPackingService
     {
-        IEnumerable<PackingItem> GetItems(IEnumerable<DayInfo> days);
+        //IEnumerable<PackingItem> GetItems(IEnumerable<DayInfo> days);
     }
 }
 
