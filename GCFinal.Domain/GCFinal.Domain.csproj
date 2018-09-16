@@ -55,7 +55,6 @@
     <Compile Include="Algorithms\AlgorithmType.cs" />
     <Compile Include="Algorithms\EB_AFIT.cs" />
     <Compile Include="Algorithms\IPackingAlgorithm.cs" />
-    <Compile Include="Data\IPackingService.cs" />
     <Compile Include="Data\IWeatherService.cs" />
     <Compile Include="Models\Astro.cs" />
     <Compile Include="Models\BinPackingModels\AlgorithmPackingResult.cs" />
