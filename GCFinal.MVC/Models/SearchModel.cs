@@ -1,5 +1,4 @@
-﻿using GCFinal.MVC.CustomValidators;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GCFinal.MVC.Models
@@ -13,8 +12,9 @@ namespace GCFinal.MVC.Models
         [Required]
         [DataType(DataType.Date, ErrorMessage = "Please enter a date")]
         [Display(Name = "Start of Vacation")]
+        [BackDate(ErrorMessage = "Back date entry not allowed")]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        [DateLessThan(ErrorMessage = "The date cannot be more than one year from yesterday in the future")]
+        [DateLessThan(ErrorMessage = "Start date must be between today and one year from yesterday")]
         public DateTime StartDate { get; set; }
 
         [Required]

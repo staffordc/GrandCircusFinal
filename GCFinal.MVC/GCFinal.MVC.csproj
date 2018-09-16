@@ -159,10 +159,11 @@
     <Compile Include="Client\WeatherClient.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PackingListController.cs" />
-    <Compile Include="CustomValidators\DateLessThanAttribute.cs" />
+    <Compile Include="Models\DateLessThanAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BackDateAttribute.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\WeatherViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
