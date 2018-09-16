@@ -1,11 +1,10 @@
 ﻿using GCFinal.Domain.Data;
-using System.Collections.Generic;
-using System.Web.Http;
+using GCFinal.Domain.Models;
 using GCFinal.Services;
 using System;
-using System.Linq;
-using GCFinal.Domain.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace GCFinal.Controllers
 {
