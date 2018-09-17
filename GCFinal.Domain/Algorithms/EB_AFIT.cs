@@ -2,17 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GCFinal.Domain.Algorithms
 {
-        /// <summary>
-        /// A 3D bin packing algorithm originally ported from https://github.com/keremdemirer/3dbinpackingjs,
-        /// which itself was a JavaScript port of https://github.com/wknechtel/3d-bin-pack/, which is a C reconstruction 
-        /// of a novel algorithm developed in a U.S. Air Force master's thesis by Erhan Baltacioglu in 2001.
-        /// </summary>
-        public class EB_AFIT : IPackingAlgorithm
+    /// <summary>
+    /// A 3D bin packing algorithm originally ported from https://github.com/keremdemirer/3dbinpackingjs,
+    /// which itself was a JavaScript port of https://github.com/wknechtel/3d-bin-pack/, which is a C reconstruction 
+    /// of a novel algorithm developed in a U.S. Air Force master's thesis by Erhan Baltacioglu in 2001.
+    /// </summary>
+    public class EB_AFIT : IPackingAlgorithm
         {
             #region Public Methods
 

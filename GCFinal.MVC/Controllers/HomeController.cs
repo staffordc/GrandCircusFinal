@@ -23,16 +23,16 @@ namespace GCFinal.MVC.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult AboutWhat2Pack()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About What2Pack";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult AboutDevs()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "About the Developers";
 
             return View();
         }
