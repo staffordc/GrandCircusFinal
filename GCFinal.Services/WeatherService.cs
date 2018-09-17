@@ -20,6 +20,15 @@ namespace GCFinal.Services
 
         public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
+            if (startDate >= DateTime.Now.AddDays(+10))
+            {
+                var beginDateNow = startDate.ToString("yyyy/MM/dd");
+                var endDateNow = startDate.AddDays(duration - 1).ToString("yyyy/MM/dd");
+                var requestNow = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpointNow"], location, beginDateNow, endDateNow), Method.GET);
+                var responseNow = await _client.ExecuteTaskAsync(requestNow);
+                var dataNow = JsonConvert.DeserializeObject<RootObject>(responseNow.Content);
+                return dataNow.Forecast.ForecastDay;
+            }
             var beginDate = startDate.ToString("yyyy/MM/dd");
             var endDate = startDate.AddDays(duration-1).ToString("yyyy/MM/dd");
             var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
