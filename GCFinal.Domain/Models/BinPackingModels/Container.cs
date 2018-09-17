@@ -4,9 +4,10 @@
     {
         private decimal volume;
 
-        public Container(int id, decimal length, decimal width, decimal height)
+        public Container(int id, string name, decimal length, decimal width, decimal height)
         {
             this.Id = id;
+            this.Name = name;
             this.Length = length;
             this.Width = width;
             this.Height = height;
@@ -14,6 +15,8 @@
         }
 
         public int Id { get; set; }
+
+        public string Name { get; set; }
 
         public decimal Length { get; set; }
 

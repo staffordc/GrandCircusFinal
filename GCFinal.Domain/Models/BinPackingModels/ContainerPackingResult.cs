@@ -15,6 +15,9 @@ namespace GCFinal.Domain.Models.BinPackingModels
         public int ContainerID { get; set; }
 
         [DataMember]
+        public string ContainerName { get; set; }
+
+        [DataMember]
         public List<AlgorithmPackingResult> AlgorithmPackingResults { get; set; }
     }
 }
