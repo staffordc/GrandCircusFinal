@@ -17,15 +17,16 @@ namespace GCFinal.Services
         /// <param name="itemsToPack">The items to pack.</param>
         /// <param name="algorithmTypeIDs">The list of algorithm type IDs to use for packing.</param>
         /// <returns>A container packing result with lists of the packed and unpacked items.</returns>
-        public static List<ContainerPackingResult> Pack(List<Container> containers, List<Item> itemsToPack, List<int> algorithmTypeIDs)
+        public static List<ContainerPackingResult> Pack(Container containers, List<Item> itemsToPack, List<int> algorithmTypeIDs)
         {
             Object sync = new Object { };
             List<ContainerPackingResult> result = new List<ContainerPackingResult>();
 
-            Parallel.ForEach(containers, container =>
-            {
+            //Parallel.ForEach(containers, container =>
+            //{
                 ContainerPackingResult containerPackingResult = new ContainerPackingResult();
-                containerPackingResult.ContainerID = container.Id;
+                containerPackingResult.ContainerID = containers.Id;
+                containerPackingResult.ContainerName = containers.Name;
 
                 Parallel.ForEach(algorithmTypeIDs, algorithmTypeID =>
                 {
@@ -42,12 +43,12 @@ namespace GCFinal.Services
 
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
-                    AlgorithmPackingResult algorithmResult = algorithm.Run(container, items);
+                    AlgorithmPackingResult algorithmResult = algorithm.Run(containers, items);
                     stopwatch.Stop();
 
                     algorithmResult.PackTimeInMilliseconds = stopwatch.ElapsedMilliseconds;
 
-                    decimal containerVolume = container.Length * container.Width * container.Height;
+                    decimal containerVolume = containers.Length * containers.Width * containers.Height;
                     decimal itemVolumePacked = algorithmResult.PackedItems.Sum(i => i.Volume);
                     decimal itemVolumeUnpacked = algorithmResult.UnpackedItems.Sum(i => i.Volume);
 
@@ -66,7 +67,7 @@ namespace GCFinal.Services
                 {
                     result.Add(containerPackingResult);
                 }
-            });
+            //});
 
             return result;
         }

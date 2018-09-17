@@ -68,7 +68,8 @@
      }
     </table>
     @foreach (var result in Model.ContainerPackingResults)
-     {
+    {
+        <p>@result.ContainerName</p>
         foreach (var item in result.AlgorithmPackingResults)
         {
             <p>@item.IsCompletePack IsCompletePack</p>
