@@ -20,7 +20,7 @@ namespace GCFinal.MVC.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             DateTime _StartDate = DateTime.Parse(value.ToString(), CultureInfo.InvariantCulture);
-            DateTime _CmpDate = DateTime.Now.AddYears(1).AddDays(-2);
+            DateTime _CmpDate = DateTime.Now.AddYears(1).AddDays(-32);
             int cmp = _StartDate.CompareTo(_CmpDate);
             if (cmp < 0)
             {
