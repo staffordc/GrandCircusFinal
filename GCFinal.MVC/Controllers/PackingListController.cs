@@ -1,15 +1,13 @@
-﻿using GCFinal.Data;
+﻿using GCFinal.Domain.Algorithms;
+using GCFinal.Domain.Models.BinPackingModels;
 using GCFinal.MVC.Client;
 using GCFinal.MVC.Models;
 using GCFinal.Services;
-using GCFinal.Domain.Models.BinPackingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using GCFinal.Domain.Algorithms;
 
 namespace GCFinal.MVC.Controllers
 {
@@ -47,7 +45,7 @@ namespace GCFinal.MVC.Controllers
             containers.Add(new Container(1, "Carry-On", 20.5M, 15M, 8M)); //samsonite 21" Spinner
             containers.Add(new Container(2, "Medium Suitcase", 27M, 18.5M, 9.5M)); //samsonite 27" Spinner (27M, 18.5M,9.5M)
             containers.Add(new Container(3, "Large Suitcase", 33.5M, 22M, 11M));
-            List<Item> itemsToContainer = new List<Item>();   
+            List<Item> itemsToContainer = new List<Item>();
             foreach (var item in itemsToPack)
             {
                 itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
@@ -56,10 +54,10 @@ namespace GCFinal.MVC.Controllers
             algorithms.Add((int)AlgorithmType.EB_AFIT);
             List<ContainerPackingResult> packingResults = new List<ContainerPackingResult>();
             var vm = new WeatherViewModel();
-            for (int i = 0; i < containers.Count; i++)
+            for (int i = containers.Count-1; i >= 0; i--)
             {
                 packingResults = PackingService.Pack(containers[i], itemsToContainer, algorithms);
-                var packResult = packingResults.Select(x => x.AlgorithmPackingResults.Select(y => y.IsCompletePack))
+                var packResult = packingResults.Select(x => x.AlgorithmPackingResults.Where(y => y.IsCompletePack))
                     .Any();
                 if (packResult)
                 {
