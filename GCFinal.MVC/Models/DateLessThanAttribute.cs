@@ -12,7 +12,7 @@ namespace GCFinal.MVC.Models
 
         public DateLessThanAttribute()
         {
-            _MaxDate = DateTime.Now.AddYears(1).AddDays(-2);
+            _MaxDate = DateTime.Now.AddYears(1).AddDays(-32);
         }
 
         public DateTime MaxDate { get; set; }
