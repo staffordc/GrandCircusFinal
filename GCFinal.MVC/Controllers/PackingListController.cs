@@ -30,7 +30,7 @@ namespace GCFinal.MVC.Controllers
         public async Task<ActionResult> GetWeatherObject(SearchModel model)
         {
             if (ModelState.IsValid)
-            { 
+            { //controller has if statement for if(current day<now+10)
             var weatherObject = await _weatherClient.GetHistoricalWeather(model.Location, model.StartDate, model.Duration);
             var avgPrecipitationMillimeters = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.PrecipMm).Sum() / weatherObject.Count), 2, MidpointRounding.AwayFromZero);
             var avgWindSpeedMph = decimal.Round((weatherObject.SelectMany(x => x.Hours).Select(x => x.WindMph).Sum() / weatherObject.Count / 24), 2, MidpointRounding.AwayFromZero);
