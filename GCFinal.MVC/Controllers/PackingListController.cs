@@ -54,12 +54,11 @@ namespace GCFinal.MVC.Controllers
             algorithms.Add((int)AlgorithmType.EB_AFIT);
             List<ContainerPackingResult> packingResults = new List<ContainerPackingResult>();
             var vm = new WeatherViewModel();
-            for (int i = containers.Count-1; i >= 0; i--)
+            for (int i = containers.Count - 1; i >= 0; i--)
             {
                 packingResults = PackingService.Pack(containers[i], itemsToContainer, algorithms);
-                var packResult = packingResults.Select(x => x.AlgorithmPackingResults.Where(y => y.IsCompletePack))
-                    .Any();
-                if (packResult)
+                var packResult = packingResults.SelectMany(x => x.AlgorithmPackingResults).SelectMany(x => x.UnpackedItems).Count();
+                if (packResult == 0)
                 {
                     vm.AvgPrecip = avgPrecipitationMillimeters;
                     vm.AvgWind = avgWindSpeedMph;
