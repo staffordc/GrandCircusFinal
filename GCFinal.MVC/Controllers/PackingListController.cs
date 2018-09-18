@@ -16,13 +16,18 @@ namespace GCFinal.MVC.Controllers
     public class PackingListController : Controller
     {
         private readonly WeatherClient _weatherClient;
+
         private readonly TripPackingService _tripPackingService;
+
+        private readonly SuitcasePackingService _suitcasePackingService;
 
         public PackingListController()
         {
             _weatherClient = new WeatherClient();
             _tripPackingService = new TripPackingService();
+            _suitcasePackingService = new SuitcasePackingService(new ContainerService());
         }
+
         // GET: PackingList
         public ActionResult Index()
         {
@@ -78,33 +83,17 @@ namespace GCFinal.MVC.Controllers
                         : vm.Historicals,
                     model.Duration);
 
-                List<Container> containers = new List<Container>();
-                containers.Add(new Container(1, "Carry-On", 104M, 20.5M, 15M, 8M)); //samsonite 21" Spinner - 43.5 total
-                containers.Add(new Container(2, "Medium Suitcase", 144.88M, 23M, 17M, 99M)); //samsonite 27" Spinner (27M, 18.5M,9.5M) - 55 total
-                containers.Add(new Container(3, "Large Suitcase", 145.6M, 29.5M, 20.5M, 11M)); //62" (must be 62" and 50 lbs or less)
                 List<Item> itemsToContainer = new List<Item>();
 
                 foreach (var item in itemsToPack)
                 {
                     itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
                 }
-                List<int> algorithms = new List<int>();
-                algorithms.Add((int)AlgorithmType.EB_AFIT);
-                List<ContainerPackingResult> packingResults = new List<ContainerPackingResult>();
-                var totalItemWeight = itemsToPack.Select(x => x.TotalWeight).Sum();
-                for (int i = containers.Count - 1; i >= 0; i--)
-                {
-                    packingResults = PackingService.Pack(containers[i], itemsToContainer, algorithms);
-                    var packResult = packingResults.SelectMany(x => x.AlgorithmPackingResults).SelectMany(x => x.UnpackedItems).Count();
-                    if (packResult == 0)
-                    {
-                        var containerWeight = packingResults.Select(x => x.Weight).Sum();
-                        var totalWeight = (containerWeight + totalItemWeight) * .0625M; //converts weight in ounces to pounds
-                        vm.PackingItems = itemsToPack;
-                        vm.ContainerPackingResults = packingResults;
-                        vm.TotalWeightInLbs = totalWeight;
-                    }
-                }
+
+                var result = _suitcasePackingService.Pack(itemsToContainer);
+                vm.ContainerPackingResults = result.Items;
+                vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
+                vm.PackingItems = itemsToPack;
 
                 return View("Result", vm);
             }
