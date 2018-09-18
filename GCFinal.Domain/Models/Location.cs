@@ -4,8 +4,8 @@ namespace GCFinal.Domain.Models
 {
     public class Location
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        
+        public string name { get; set; }
         [JsonProperty("region")]
         public string Region { get; set; }
         [JsonProperty("country")]

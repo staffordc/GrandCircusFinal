@@ -63,7 +63,7 @@ namespace GCFinal.MVC.Controllers
         public async Task<ActionResult> GetWeatherObject(SearchModel model)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var vm = new WeatherViewModel();
 
                 var historicalWeather = await _weatherClient.GetHistoricalWeather(model.Location, model.StartDate, model.Duration);
@@ -83,18 +83,18 @@ namespace GCFinal.MVC.Controllers
                         : vm.Historicals,
                     model.Duration);
 
-            List<Item> itemsToContainer = new List<Item>();
-            foreach (var item in itemsToPack)
-            {
-                itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
-            }
+                List<Item> itemsToContainer = new List<Item>();
+                foreach (var item in itemsToPack)
+                {
+                    itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
+                }
 
                 var result = _suitcasePackingService.Pack(itemsToContainer);
                 vm.ContainerPackingResults = result.Items;
                 vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
-                    vm.PackingItems = itemsToPack;
+                vm.PackingItems = itemsToPack;
 
-            return View("Result", vm);
+                return View("Result", vm);
             }
 
             return RedirectToAction("Index", "Home");
