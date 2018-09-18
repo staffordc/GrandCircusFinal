@@ -42,9 +42,9 @@ namespace GCFinal.MVC.Controllers
                 var avgDailyAvgTempF = dailies.Average(x => x.AvgTempF);
                 var avgHumidityPercent = hourlies.Average(x => x.Humidity);
                 var itemsToPack = this._tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, Convert.ToDecimal(model.Duration)).ToList(); List<Container> containers = new List<Container>();
-                containers.Add(new Container(1, "Carry-On", 20.5M, 15M, 8M)); //samsonite 21" Spinner
-                containers.Add(new Container(2, "Medium Suitcase", 27M, 18.5M, 9.5M)); //samsonite 27" Spinner (27M, 18.5M,9.5M)
-                containers.Add(new Container(3, "Large Suitcase", 33.5M, 22M, 11M));
+                containers.Add(new Container(1, "Carry-On",104M, 20.5M, 15M, 8M)); //samsonite 21" Spinner
+                containers.Add(new Container(2, "Medium Suitcase",144.88M, 27M, 18.5M, 9.5M)); //samsonite 27" Spinner (27M, 18.5M,9.5M)
+                containers.Add(new Container(3, "Large Suitcase",145.6M, 33.5M, 22M, 11M));
                 List<Item> itemsToContainer = new List<Item>();
                 foreach (var item in itemsToPack)
                 {
@@ -54,6 +54,7 @@ namespace GCFinal.MVC.Controllers
                 algorithms.Add((int)AlgorithmType.EB_AFIT);
                 List<ContainerPackingResult> packingResults = new List<ContainerPackingResult>();
                 var vm = new WeatherViewModel();
+                var totalItemWeight = itemsToPack.Select(x => x.TotalWeight).Sum();
                 for (int i = containers.Count - 1; i >= 0; i--)
                 {
                     packingResults = PackingService.Pack(containers[i], itemsToContainer, algorithms);
