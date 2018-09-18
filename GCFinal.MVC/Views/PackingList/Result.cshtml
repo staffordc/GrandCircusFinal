@@ -59,14 +59,14 @@
     </tr>
 
     @foreach (var item in Model.PackingItems)
-     {
+    {
         <tr>
             <td>@item.Quantity</td>
             <td>@item.Name</td>
-           
         </tr>
-     }
-    </table>
+    }
+</table>
+<p>The total weight for your luggage is @Html.DisplayFor(item => item.TotalWeightInLbs)!</p>
     @foreach (var result in Model.ContainerPackingResults)
     {
         <p>@result.ContainerName</p>

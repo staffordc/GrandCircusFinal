@@ -27,6 +27,7 @@ namespace GCFinal.Services
                 ContainerPackingResult containerPackingResult = new ContainerPackingResult();
                 containerPackingResult.ContainerID = containers.Id;
                 containerPackingResult.ContainerName = containers.Name;
+                containerPackingResult.Weight = containers.Weight;
 
                 Parallel.ForEach(algorithmTypeIDs, algorithmTypeID =>
                 {
