@@ -11,7 +11,7 @@ namespace GCFinal.Controllers
     public class WeatherController : ApiController
     {
         private readonly IWeatherService _weatherService;
-
+        public readonly  IWeatherService _ForecastWeatherNowService;
         public WeatherController()
         {
             _weatherService = new WeatherService();
@@ -20,6 +20,10 @@ namespace GCFinal.Controllers
         [HttpGet]
         public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
+            if (startDate <= DateTime.Now.AddDays(10))
+            {
+                return await WeatherAsyncNow(location, startDate, duration);
+            }
             var dateOneYearAgo = startDate.AddYears(-1);
             var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
             var dateTwoYearsAgo = startDate.AddYears(-2);
@@ -32,8 +36,8 @@ namespace GCFinal.Controllers
             items.AddRange(threeYearsAgo);
             return items;
         }
-        [HttpGet]
-        public async Task<List<ForecastDay>> GetWeatherAsyncNow(string location, DateTime startDate, int duration)
+        
+        private async Task<List<ForecastDay>> WeatherAsyncNow(string location, DateTime startDate, int duration)
         {
             var dateOneYearAgo = startDate.AddYears(-1);
             var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);

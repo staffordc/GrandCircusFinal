@@ -37,6 +37,10 @@ namespace GCFinal.MVC.Client
                 Value = duration
             });
             var response = await _client.ExecuteTaskAsync(request);
+            if (!response.IsSuccessful)
+            {
+                throw new Exception(response.Content);
+            }
             return JsonConvert.DeserializeObject<List<ForecastDay>>(response.Content);
         }
     }
