@@ -37,10 +37,26 @@ namespace GCFinal.MVC.Client
                 Value = duration
             });
             var response = await _client.ExecuteTaskAsync(request);
-            if (!response.IsSuccessful)
+            return JsonConvert.DeserializeObject<List<ForecastDay>>(response.Content);
+        }
+        public async Task<List<ForecastDay>> GetForecastWeather(string location, int duration)
+        {
+
+            var request = new RestRequest("api/weather", Method.GET);
+            request.Parameters.Add(new Parameter()
             {
-                throw new Exception(response.Content);
-            }
+                Name = "location",
+                Type = ParameterType.QueryString,
+                Value = location
+            });
+            request.Parameters.Add(new Parameter()
+            {
+                Name = "duration",
+                Type = ParameterType.QueryString,
+                Value = 10
+            });
+
+            var response = await _client.ExecuteTaskAsync(request);
             return JsonConvert.DeserializeObject<List<ForecastDay>>(response.Content);
         }
     }

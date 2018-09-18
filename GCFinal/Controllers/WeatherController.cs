@@ -20,34 +20,27 @@ namespace GCFinal.Controllers
         [HttpGet]
         public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
-            if (startDate <= DateTime.Now.AddDays(10))
-            {
-                return await WeatherAsyncNow(location, startDate, duration);
-            }
+            //if (startDate <= DateTime.Now.AddDays(10))
+            //{
+            //    return await WeatherAsyncNow(location, startDate, duration);
+            //}
             var dateOneYearAgo = startDate.AddYears(-1);
-            var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
+            var oneYearAgo = await _weatherService.GetHistoricalAsync(location, dateOneYearAgo, duration);
             var dateTwoYearsAgo = startDate.AddYears(-2);
-            var twoYearsAgo = await _weatherService.GetWeatherAsync(location, dateTwoYearsAgo, duration);
+            var twoYearsAgo = await _weatherService.GetHistoricalAsync(location, dateTwoYearsAgo, duration);
             var dateThreeYearsAgo = startDate.AddYears(-3);
-            var threeYearsAgo = await _weatherService.GetWeatherAsync(location, dateThreeYearsAgo, duration);
+            var threeYearsAgo = await _weatherService.GetHistoricalAsync(location, dateThreeYearsAgo, duration);
             List<ForecastDay> items = new List<ForecastDay>();
             items.AddRange(oneYearAgo);
             items.AddRange(twoYearsAgo);
             items.AddRange(threeYearsAgo);
             return items;
         }
-        
-        private async Task<List<ForecastDay>> WeatherAsyncNow(string location, DateTime startDate, int duration)
+        [HttpGet]
+        public async Task<List<ForecastDay>> WeatherAsyncNow(string location, int duration)
         {
-            var dateOneYearAgo = startDate.AddYears(-1);
-            var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
-            var dateTwoYearsAgo = startDate.AddYears(-2);
-            var twoYearsAgo = await _weatherService.GetWeatherAsync(location, dateTwoYearsAgo, duration);
-            var dateNow = startDate;
-            var Now = await _weatherService.GetWeatherAsync(location, dateNow, duration);
+            var Now = await _weatherService.GetForecastAsync(location, duration);
             List<ForecastDay> items = new List<ForecastDay>();
-            items.AddRange(oneYearAgo);
-            items.AddRange(twoYearsAgo);
             items.AddRange(Now);
             return items;
         }

@@ -7,13 +7,10 @@ namespace GCFinal.MVC.Models
 {
     public class WeatherViewModel
     {
-        public decimal DailyMaxTemp { get; set; }
-        public decimal DailyMinTemp { get; set; }
-        public decimal DailyAvgTemp { get; set; }
-        public decimal AvgWind { get; set; }
-        public decimal AvgPrecip { get; set; }
-        public decimal AvgHumidity { get; set; }
+        public ForecastWeatherModel Forecasts { get; set; }
+        public HistoricalWeatherModel Historicals { get; set; }
         public List<PackingItem> PackingItems { get; set; }
         public List<ContainerPackingResult> ContainerPackingResults { get; set; }
+
     }
 }
