@@ -15,5 +15,6 @@ namespace GCFinal.MVC.Models
         public decimal AvgHumidity { get; set; }
         public List<PackingItem> PackingItems { get; set; }
         public List<ContainerPackingResult> ContainerPackingResults { get; set; }
+        public decimal TotalWeightInLbs { get; set; }
     }
 }

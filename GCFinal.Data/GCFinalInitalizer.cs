@@ -24,7 +24,7 @@ namespace GCFinal.Data
                 Length = 13M,
                 Width = 10M,
                 Height = 0.3M,
-                Weight = 8.5M
+                Weight = 6M
             });
 
             context.Items.Add(new TripItem()
@@ -42,7 +42,7 @@ namespace GCFinal.Data
                 Length = 13M,
                 Width = 10M,
                 Height = 0.3M,
-                Weight = 8.5M
+                Weight = 8M
             });
 
             context.Items.Add(new TripItem()
@@ -78,7 +78,7 @@ namespace GCFinal.Data
                 Length = 10M,
                 Width = 11M,
                 Height = 1.6M,
-                Weight = 22.9M
+                Weight = 22M
             });
 
             context.Items.Add(new TripItem()
@@ -96,7 +96,7 @@ namespace GCFinal.Data
                 Length = 10M,
                 Width = 11.5M,
                 Height = 1.7M,
-                Weight = 14M
+                Weight = 12M
             });
 
             context.Items.Add(new TripItem()
@@ -204,7 +204,7 @@ namespace GCFinal.Data
                 Length = 9M,
                 Width = 3.5M,
                 Height = 0.72M,
-                Weight = 1.68M
+                Weight = 4.5M
             });
 
             context.Items.Add(new TripItem()
@@ -222,7 +222,7 @@ namespace GCFinal.Data
                 Length = 9M,
                 Width = 3.5M,
                 Height = 0.72M,
-                Weight = 1.68M
+                Weight = 4M
             });
 
             context.Items.Add(new TripItem()
@@ -240,7 +240,7 @@ namespace GCFinal.Data
                 Length = 9M,
                 Width = 3.5M,
                 Height = 0.72M,
-                Weight = 1.68M
+                Weight = 4.5M
             });
 
             context.Items.Add(new TripItem()
@@ -258,7 +258,7 @@ namespace GCFinal.Data
                 Length = 10M,
                 Width = 11.5M,
                 Height = 1.7M,
-                Weight = 8M
+                Weight = 9M
             });
 
             context.Items.Add(new TripItem()
@@ -294,7 +294,7 @@ namespace GCFinal.Data
                 Length = 11M,
                 Width = 4M,
                 Height = 4M,
-                Weight = 12M
+                Weight = 33M
             });
 
             context.Items.Add(new TripItem()
@@ -312,7 +312,7 @@ namespace GCFinal.Data
                 Length = 9M,
                 Width = 4M,
                 Height = 4M,
-                Weight = 13M
+                Weight = 24M
             });
 
             context.SaveChanges();

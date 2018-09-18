@@ -21,40 +21,34 @@ namespace GCFinal.Services
                 {
                     if (cloth.IsBulk)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, Math.Ceiling(duration / 3))
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = Math.Ceiling(duration / 3)
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsDaily)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, duration)
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = duration
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsEssential)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 1
+                            Width = cloth.Width
                         });
                     }
                 }
@@ -66,40 +60,34 @@ namespace GCFinal.Services
                 {
                     if (cloth.IsBulk)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 3)
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 3
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsDaily)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 7)
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 7
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsEssential)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 1
+                            Width = cloth.Width
                         });
                     }
                 }
@@ -111,7 +99,7 @@ namespace GCFinal.Services
         public void EmptyPackingItems()
         {
             var clothes = db.PackingItems;
-            foreach(var cloth in clothes)
+            foreach (var cloth in clothes)
             {
                 db.PackingItems.Remove(cloth);
             }

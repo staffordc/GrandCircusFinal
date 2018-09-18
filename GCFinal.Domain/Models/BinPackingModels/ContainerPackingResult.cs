@@ -18,6 +18,9 @@ namespace GCFinal.Domain.Models.BinPackingModels
         public string ContainerName { get; set; }
 
         [DataMember]
+        public decimal Weight { get; set; }
+
+        [DataMember]
         public List<AlgorithmPackingResult> AlgorithmPackingResults { get; set; }
     }
 }
