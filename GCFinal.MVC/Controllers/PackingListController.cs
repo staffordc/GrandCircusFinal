@@ -62,7 +62,7 @@ namespace GCFinal.MVC.Controllers
                     if (packResult == 0)
                     {
                         var containerWeight = packingResults.Select(x => x.Weight).Sum();
-                        var totalWeight = (containerWeight + totalItemWeight) * .0625M;
+                        var totalWeight = (containerWeight + totalItemWeight) * .0625M; //converts weight in ounces to pounds
                         vm.AvgPrecip = avgPrecipitationMillimeters;
                         vm.AvgWind = avgWindSpeedMph;
                         vm.DailyMaxTemp = avgDailyHighTempF;
