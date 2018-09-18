@@ -42,9 +42,9 @@ namespace GCFinal.MVC.Controllers
                 var avgDailyAvgTempF = dailies.Average(x => x.AvgTempF);
                 var avgHumidityPercent = hourlies.Average(x => x.Humidity);
                 var itemsToPack = this._tripPackingService.PackItems(avgDailyAvgTempF, avgPrecipitationMillimeters, avgWindSpeedMph, Convert.ToDecimal(model.Duration)).ToList(); List<Container> containers = new List<Container>();
-                containers.Add(new Container(1, "Carry-On",104M, 20.5M, 15M, 8M)); //samsonite 21" Spinner
-                containers.Add(new Container(2, "Medium Suitcase",144.88M, 27M, 18.5M, 9.5M)); //samsonite 27" Spinner (27M, 18.5M,9.5M)
-                containers.Add(new Container(3, "Large Suitcase",145.6M, 33.5M, 22M, 11M));
+                containers.Add(new Container(1, "Carry-On",104M, 20.5M, 15M, 8M)); //samsonite 21" Spinner - 43.5 total
+                containers.Add(new Container(2, "Medium Suitcase",144.88M, 23M, 17M, 99M)); //samsonite 27" Spinner (27M, 18.5M,9.5M) - 55 total
+                containers.Add(new Container(3, "Large Suitcase",145.6M, 29.5M, 20.5M, 11M)); //62" (must be 62" and 50 lbs or less)
                 List<Item> itemsToContainer = new List<Item>();
                 foreach (var item in itemsToPack)
                 {
