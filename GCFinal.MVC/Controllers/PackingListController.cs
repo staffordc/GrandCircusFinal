@@ -84,7 +84,6 @@ namespace GCFinal.MVC.Controllers
                     model.Duration);
 
                 List<Item> itemsToContainer = new List<Item>();
-
                 foreach (var item in itemsToPack)
                 {
                     itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
