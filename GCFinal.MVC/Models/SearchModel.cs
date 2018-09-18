@@ -13,7 +13,7 @@ namespace GCFinal.MVC.Models
         [DataType(DataType.Date, ErrorMessage = "Please enter a date")]
         [Display(Name = "Start of Travel")]
         [BackDate(ErrorMessage = "Back date entry not allowed")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [DateLessThan(ErrorMessage = "Start date must be less than 11 months from now")]
         public DateTime StartDate { get; set; }
 
