@@ -44,6 +44,8 @@ namespace GCFinal.MVC.Controllers
             var avgDailyLowTempF = dailies.Average(x => x.MinTempF);
             var avgDailyAvgTempF = dailies.Average(x => x.AvgTempF);
             var avgHumidityPercent = hourlies.Average(x => x.Humidity);
+            var cityName = weatherObject.Select(x => x.Location).Select(x => x.Name).Distinct().FirstOrDefault();
+            var regionName = weatherObject.Select(x => x.Location).Select(x => x.Region).Distinct().FirstOrDefault();
             return new WeatherModel()
             {
                 DailyMaxTemp = avgDailyHighTempF,
@@ -92,7 +94,7 @@ namespace GCFinal.MVC.Controllers
                 var result = _suitcasePackingService.Pack(itemsToContainer);
                 vm.ContainerPackingResults = result.Items;
                 vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
-                vm.PackingItems = itemsToPack;
+                        vm.PackingItems = itemsToPack;
 
                 return View("Result", vm);
             }
