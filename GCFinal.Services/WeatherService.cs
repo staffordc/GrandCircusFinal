@@ -25,7 +25,7 @@ namespace GCFinal.Services
             var beginDate = startDate.ToString("yyyy/MM/dd");
             var endDate = startDate.AddDays(duration - 1).ToString("yyyy/MM/dd");
             RestRequest request;
-            //var request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpoint"], location, beginDate, endDate), Method.GET);
+            
             if (startDate >= DateTime.Now)
             {
                 request = new RestRequest(string.Format(ConfigurationManager.AppSettings["WeatherEndpointNow"], location, startDate, duration), Method.GET);
