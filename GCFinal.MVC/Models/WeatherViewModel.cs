@@ -6,10 +6,10 @@ namespace GCFinal.MVC.Models
 {
     public class WeatherViewModel
     {
-        public ForecastWeatherModel Forecasts { get; set; }
-        public HistoricalWeatherModel Historicals { get; set; }
-        public List<PackingItem> PackingItems { get; set; }
-        public List<ContainerPackingResult> ContainerPackingResults { get; set; }
+        public WeatherModel Forecasts { get; set; }
+        public WeatherModel Historicals { get; set; }
+        public IEnumerable<PackingItem> PackingItems { get; set; }
+        public IEnumerable<ContainerPackingResult> ContainerPackingResults { get; set; }
         public decimal TotalWeightInLbs { get; set; }
     }
 }

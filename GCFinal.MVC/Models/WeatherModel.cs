@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GCFinal.MVC.Models
 {
-    public class ForecastWeatherModel
+    public class WeatherModel
     {
         public decimal DailyMaxTemp { get; set; }
         public decimal DailyMinTemp { get; set; }
