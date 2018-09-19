@@ -1,5 +1,4 @@
-﻿using GCFinal.Domain.Algorithms;
-using GCFinal.Domain.Models;
+﻿using GCFinal.Domain.Models;
 using GCFinal.Domain.Models.BinPackingModels;
 using GCFinal.Domain.Models.PackingModels;
 using GCFinal.MVC.Client;
@@ -44,8 +43,6 @@ namespace GCFinal.MVC.Controllers
             var avgDailyLowTempF = dailies.Average(x => x.MinTempF);
             var avgDailyAvgTempF = dailies.Average(x => x.AvgTempF);
             var avgHumidityPercent = hourlies.Average(x => x.Humidity);
-            var cityName = weatherObject.Select(x => x.Location).Select(x => x.Name).Distinct().FirstOrDefault();
-            var regionName = weatherObject.Select(x => x.Location).Select(x => x.Region).Distinct().FirstOrDefault();
             return new WeatherModel()
             {
                 DailyMaxTemp = avgDailyHighTempF,
@@ -69,7 +66,13 @@ namespace GCFinal.MVC.Controllers
                 var vm = new WeatherViewModel();
 
                 var historicalWeather = await _weatherClient.GetHistoricalWeather(model.Location, model.StartDate, model.Duration);
+                var cityName = historicalWeather.Select(x => x.Location).Select(x => x.Name).Distinct().FirstOrDefault();
+                var regionName = historicalWeather.Select(x => x.Location).Select(x => x.Region).Distinct().FirstOrDefault();
                 vm.Historicals = MapForecast(historicalWeather);
+                vm.CityName = cityName;
+                vm.RegionName = regionName;
+                vm.StartDate = model.StartDate.ToString("d");
+                vm.EndDate = model.StartDate.AddDays(model.Duration - 1).ToString("d");
 
                 if (model.StartDate <= DateTime.Now.AddDays(10))
                 {
@@ -94,7 +97,7 @@ namespace GCFinal.MVC.Controllers
                 var result = _suitcasePackingService.Pack(itemsToContainer);
                 vm.ContainerPackingResults = result.Items;
                 vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
-                        vm.PackingItems = itemsToPack;
+                vm.PackingItems = itemsToPack;
 
                 return View("Result", vm);
             }

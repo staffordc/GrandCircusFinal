@@ -11,5 +11,9 @@ namespace GCFinal.MVC.Models
         public IEnumerable<PackingItem> PackingItems { get; set; }
         public IEnumerable<ContainerPackingResult> ContainerPackingResults { get; set; }
         public decimal TotalWeightInLbs { get; set; }
+        public string CityName { get; set; }
+        public string RegionName { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
     }
 }
