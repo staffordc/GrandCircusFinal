@@ -73,11 +73,18 @@ namespace GCFinal.MVC.Controllers
                 vm.RegionName = regionName;
                 vm.StartDate = model.StartDate.ToString("d");
                 vm.EndDate = model.StartDate.AddDays(model.Duration - 1).ToString("d");
-
-                if (model.StartDate <= DateTime.Now.AddDays(10))
+                if (model.StartDate <= DateTime.Now.AddDays(5))
                 {
-                    var forecastWeather = await _weatherClient.GetForecastWeather(model.Location, model.Duration);
+                    TimeSpan interval = model.StartDate - DateTime.Today;
+                    var days = model.Duration + interval.Days;
+                    if (days > 10)
+                    {
+                        var forecastWeather10Days = await _weatherClient.GetForecastWeather(model.Location, 10);
+                        vm.Forecasts = MapForecast(forecastWeather10Days);
+                    }
+                    var forecastWeather = await _weatherClient.GetForecastWeather(model.Location, days);
                     vm.Forecasts = MapForecast(forecastWeather);
+
                 }
 
                 // the ?: is a ternary operator: this is what it does 

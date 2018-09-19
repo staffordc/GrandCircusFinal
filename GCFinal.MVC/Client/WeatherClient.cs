@@ -58,7 +58,7 @@ namespace GCFinal.MVC.Client
             {
                 Name = "duration",
                 Type = ParameterType.QueryString,
-                Value = 10
+                Value = duration
             });
 
             var response = await _client.ExecuteTaskAsync(request);
