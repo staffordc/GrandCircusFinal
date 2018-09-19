@@ -53,6 +53,7 @@
     <Compile Include="GCFinalInitalizer.cs" />
     <Compile Include="Maps\ItemMap.cs" />
     <Compile Include="Maps\PackingItemMap.cs" />
+    <Compile Include="Maps\TripMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
