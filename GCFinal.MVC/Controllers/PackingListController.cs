@@ -33,10 +33,10 @@ namespace GCFinal.MVC.Controllers
         {
             return View();
         }
-        private WeatherModel MapForecast(IEnumerable<ForecastDay> forecastDays)
+        private WeatherModel MapForecast(List<RootObject> forecastDays)
         {
-            var hourlies = forecastDays.SelectMany(x => x.Hours).ToList();
-            var dailies = forecastDays.Select(x => x.Day).ToList();
+            var hourlies = forecastDays.Select(x => x.Forecast).SelectMany(x => x.ForecastDay).SelectMany(x => x.Hours).ToList();
+            var dailies = forecastDays.Select(x => x.Forecast).SelectMany(x => x.ForecastDay).Select(x => x.Day).ToList();
             var countOfDailies = dailies.Count();
             var avgPrecipitationMillimeters = hourlies.Sum(x => x.PrecipMm) / countOfDailies;
             var avgWindSpeedMph = hourlies.Average(x => x.WindMph);
@@ -44,6 +44,8 @@ namespace GCFinal.MVC.Controllers
             var avgDailyLowTempF = dailies.Average(x => x.MinTempF);
             var avgDailyAvgTempF = dailies.Average(x => x.AvgTempF);
             var avgHumidityPercent = hourlies.Average(x => x.Humidity);
+            var cityName = weatherObject.Select(x => x.Location).Select(x => x.Name).Distinct().FirstOrDefault();
+            var regionName = weatherObject.Select(x => x.Location).Select(x => x.Region).Distinct().FirstOrDefault();
             return new WeatherModel()
             {
                 DailyMaxTemp = avgDailyHighTempF,
@@ -92,7 +94,7 @@ namespace GCFinal.MVC.Controllers
                 var result = _suitcasePackingService.Pack(itemsToContainer);
                 vm.ContainerPackingResults = result.Items;
                 vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
-                vm.PackingItems = itemsToPack;
+                        vm.PackingItems = itemsToPack;
 
                 return View("Result", vm);
             }
