@@ -165,6 +165,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BackDateAttribute.cs" />
+    <Compile Include="Models\WeatherModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\WeatherViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

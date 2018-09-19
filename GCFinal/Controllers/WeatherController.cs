@@ -21,15 +21,24 @@ namespace GCFinal.Controllers
         public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
             var dateOneYearAgo = startDate.AddYears(-1);
-            var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
+            var oneYearAgo = await _weatherService.GetHistoricalAsync(location, dateOneYearAgo, duration);
             var dateTwoYearsAgo = startDate.AddYears(-2);
-            var twoYearsAgo = await _weatherService.GetWeatherAsync(location, dateTwoYearsAgo, duration);
+            var twoYearsAgo = await _weatherService.GetHistoricalAsync(location, dateTwoYearsAgo, duration);
             var dateThreeYearsAgo = startDate.AddYears(-3);
-            var threeYearsAgo = await _weatherService.GetWeatherAsync(location, dateThreeYearsAgo, duration);
+            var threeYearsAgo = await _weatherService.GetHistoricalAsync(location, dateThreeYearsAgo, duration);
             List<ForecastDay> items = new List<ForecastDay>();
             items.AddRange(oneYearAgo);
             items.AddRange(twoYearsAgo);
             items.AddRange(threeYearsAgo);
+            return items;
+        }
+
+        [HttpGet]
+        public async Task<List<ForecastDay>> WeatherAsyncNow(string location, int duration)
+        {
+            var Now = await _weatherService.GetForecastAsync(location, duration);
+            List<ForecastDay> items = new List<ForecastDay>();
+            items.AddRange(Now);
             return items;
         }
 

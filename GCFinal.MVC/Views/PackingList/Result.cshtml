@@ -27,25 +27,26 @@
             Avg Humidity %   
         </th>
     </tr>
+    @if(Model.Forecasts != null)
+    { 
+        <tr>
+            <td>@Html.DisplayFor(item => item.Forecasts.DailyMaxTemp)</td>
+            <td>@Html.DisplayFor(item => item.Forecasts.DailyMinTemp)</td>
+            <td>@Html.DisplayFor(item => item.Forecasts.DailyAvgTemp)</td>
+            <td>@Html.DisplayFor(item => item.Forecasts.AvgPrecip)</td>
+            <td>@Html.DisplayFor(item => item.Forecasts.AvgWind)</td>
+            <td>@Html.DisplayFor(item => item.Forecasts.AvgHumidity)</td>
+        </tr>
+    }
     <tr>
-        <td>
-            @Html.DisplayFor(item => item.DailyMaxTemp)  
-        </td>
-        <td>
-            @Html.DisplayFor(item => item.DailyMinTemp)  
-        </td>
-        <td>
-            @Html.DisplayFor(item => item.DailyAvgTemp)  
-        </td>
-        <td>
-            @Html.DisplayFor(item => item.AvgPrecip)  
-        </td>
-        <td>
-            @Html.DisplayFor(item => item.AvgWind)  
-        </td>
-        <td>
-            @Html.DisplayFor(item => item.AvgHumidity)  
-        </td>
+
+        <td>@Html.DisplayFor(item => item.Historicals.DailyMaxTemp)</td>
+        <td>@Html.DisplayFor(item => item.Historicals.DailyMinTemp)</td>
+        <td>@Html.DisplayFor(item => item.Historicals.DailyAvgTemp)</td>
+        <td>@Html.DisplayFor(item => item.Historicals.AvgPrecip)</td>
+        <td>@Html.DisplayFor(item => item.Historicals.AvgWind)</td>
+        <td>@Html.DisplayFor(item => item.Historicals.AvgHumidity)</td>
+
     </tr>
 </table >
 
