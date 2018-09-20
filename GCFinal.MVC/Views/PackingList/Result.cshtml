@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            Type
+            </th>
+        <th>
             Daily Max Temp (&#8457;) 
         </th>
         <th>
@@ -30,6 +33,7 @@
     @if(Model.Forecasts != null)
     { 
         <tr>
+            <td>Forecasts</td>
             <td>@Html.DisplayFor(item => item.Forecasts.DailyMaxTemp)</td>
             <td>@Html.DisplayFor(item => item.Forecasts.DailyMinTemp)</td>
             <td>@Html.DisplayFor(item => item.Forecasts.DailyAvgTemp)</td>
@@ -39,7 +43,7 @@
         </tr>
     }
     <tr>
-
+        <td>Historical</td>
         <td>@Html.DisplayFor(item => item.Historicals.DailyMaxTemp)</td>
         <td>@Html.DisplayFor(item => item.Historicals.DailyMinTemp)</td>
         <td>@Html.DisplayFor(item => item.Historicals.DailyAvgTemp)</td>
@@ -54,34 +58,18 @@
 <br/>
 <table class="table">
     
-    <tr>
-        <th>Quantity</th>
-        <th>Items</th>
-    </tr>
-
     @foreach (var item in Model.PackingItems)
     {
-        <tr>
-            <td>@item.Quantity</td>
-            <td>@item.Name</td>
-        </tr>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">@item.Quantity @item.Name</a></li>
+        
+        <!--<td>@item.Quantity</td>-->
+        <!--<td>@item.Name</td>-->
+    </ul>
     }
 </table>
 <p>The total weight for your luggage is @Html.DisplayFor(item => item.TotalWeightInLbs)!</p>
     @foreach (var result in Model.ContainerPackingResults)
     {
         <p>@result.ContainerName</p>
-        foreach (var item in result.AlgorithmPackingResults)
-        {
-            <p>@item.IsCompletePack IsCompletePack</p>
-            <p>@item.PercentContainerVolumePacked % of container packed</p>
-            <p>@item.PercentItemVolumePacked % of items packed</p>
-            <p>@item.PackTimeInMilliseconds packed time</p>
-            
-            foreach (var thing in item.UnpackedItems)
-            {
-                <p>@thing.Name things not packed</p>
-                <p>@thing.Quantity quantity</p>
-            }
-        }
     }
