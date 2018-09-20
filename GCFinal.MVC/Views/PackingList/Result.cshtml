@@ -42,16 +42,30 @@
             <td>@Html.DisplayFor(item => item.Forecasts.AvgHumidity)</td>
         </tr>
     }
-    <tr>
-        <td>Historical</td>
-        <td>@Html.DisplayFor(item => item.Historicals.DailyMaxTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.DailyMinTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.DailyAvgTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgPrecip)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgWind)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgHumidity)</td>
+        <tr>
+            <div class="card fixed-left" style="width: 15rem" >
+                <h5 class="card-title">Daily Max Temp</h5>
+                <div class="card-body">
+                    @Html.DisplayFor(item => item.Historicals.DailyMaxTemp)
+                </div>
+            </div>
+            <div class="card" style="width: 15rem">
+                <h5 class="card-title">Daily Max Temp</h5>
+                <div class="card-body">
+                    @Html.DisplayFor(item => item.Historicals.DailyMinTemp)
+                </div>
+            </div>
+            <div class="card" style="width: 15rem">
+                <h5 class="card-title">Daily Max Temp</h5>
+                <div class="card-body">
+                    @Html.DisplayFor(item => item.Historicals.DailyAvgTemp)
+                </div>
+            </div>
+                    <td>@Html.DisplayFor(item => item.Historicals.AvgPrecip)</td>
+                    <td>@Html.DisplayFor(item => item.Historicals.AvgWind)</td>
+                    <td>@Html.DisplayFor(item => item.Historicals.AvgHumidity)</td>
 
-    </tr>
+</tr>
 </table >
 
 <h3>We think that you should bring these items!</h3>
