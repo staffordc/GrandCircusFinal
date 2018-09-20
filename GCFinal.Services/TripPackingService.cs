@@ -22,7 +22,7 @@ namespace GCFinal.Services
 
         public IQueryable<PackingItem> GetPackedItems(int tripId)
         {
-            
+
             return db.PackingItems.Where(x => x.TripId == tripId);
         }
 
@@ -209,12 +209,12 @@ namespace GCFinal.Services
                 return Temperature.Hot;
             }
 
-            if (temp >= 65 && temp < 79)
+            if (temp >= 65 && temp < 80)
             {
                 return Temperature.Warm;
             }
 
-            if (temp >= 45 && temp < 64)
+            if (temp >= 45 && temp < 65)
             {
                 return Temperature.Cool;
             }
