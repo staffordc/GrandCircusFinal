@@ -13,14 +13,16 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public void CreateTrip(Trip trip)
+        public int CreateTrip(Trip trip)
         {
             db.Trips.Add(trip);
+            db.SaveChanges();
+            return trip.Id;
         }
 
-        public IQueryable<PackingItem> GetPackedItems()
+        public IQueryable<PackingItem> GetPackedItems(int tripId)
         {
-            int tripId = db.Trips.Max(x => x.Id);
+            
             return db.PackingItems.Where(x => x.TripId == tripId);
         }
 
