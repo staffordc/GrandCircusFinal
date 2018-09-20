@@ -1,9 +1,5 @@
 ﻿using GCFinal.Data;
 using GCFinal.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GCFinal.MVC.Controllers
@@ -15,11 +11,6 @@ namespace GCFinal.MVC.Controllers
 
         public ActionResult Index()
         {
-            if(db.PackingItems != null)
-            {
-                _tripPackingService.EmptyPackingItems();
-            }
-
             return View();
         }
 

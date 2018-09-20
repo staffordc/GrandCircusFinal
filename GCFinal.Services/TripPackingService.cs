@@ -1,10 +1,9 @@
 ﻿using GCFinal.Data;
+using GCFinal.Domain.Models;
 using GCFinal.Domain.Models.Items;
 using GCFinal.Domain.Models.PackingModels;
 using System;
 using System.Linq;
-using System.Web.ModelBinding;
-using GCFinal.Domain.Models;
 
 namespace GCFinal.Services
 {
@@ -106,17 +105,7 @@ namespace GCFinal.Services
                 }
             }
             db.SaveChanges();
-            
-        }
 
-        public void EmptyPackingItems()
-        {
-            var clothes = db.PackingItems;
-            foreach (var cloth in clothes)
-            {
-                db.PackingItems.Remove(cloth);
-            }
-            db.SaveChanges();
         }
 
         public IQueryable<TripItem> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
