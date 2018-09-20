@@ -26,7 +26,7 @@ namespace GCFinal.Services
             return db.PackingItems.Where(x => x.TripId == tripId);
         }
 
-        public void PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration)
+        public void PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration, int tripId)
         {
             var clothes = GetItemsToPack(tempAvg, rainAvg, windAvg);
             if (duration <= 7)
@@ -38,6 +38,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, Math.Ceiling(duration / 3))
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width
@@ -49,6 +50,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, duration)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width
@@ -60,6 +62,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width
@@ -77,6 +80,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, 3)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width
@@ -88,6 +92,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, 7)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width
@@ -99,6 +104,7 @@ namespace GCFinal.Services
                         db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
                             Width = cloth.Width

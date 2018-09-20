@@ -57,7 +57,7 @@ namespace GCFinal.MVC.Controllers
         private IEnumerable<PackingItem> GetPackingItems(WeatherModel model, int duration, int tripId)
         {
             _tripPackingService
-                .PackItems(model.DailyAvgTemp, model.AvgPrecip, model.AvgWind, Convert.ToDecimal(duration));
+                .PackItems(model.DailyAvgTemp, model.AvgPrecip, model.AvgWind, Convert.ToDecimal(duration), tripId);
             return this._tripPackingService.GetPackedItems(tripId).ToList();
         }
 
