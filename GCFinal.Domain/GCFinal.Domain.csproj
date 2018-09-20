@@ -68,6 +68,7 @@
     <Compile Include="Models\Forecast.cs" />
     <Compile Include="Models\ForecastDay.cs" />
     <Compile Include="Models\Hour.cs" />
+    <Compile Include="Models\SuitcaseItem.cs" />
     <Compile Include="Models\SuitcasePackingResult.cs" />
     <Compile Include="OtherModels\Items\TripItem.cs" />
     <Compile Include="Models\Location.cs" />

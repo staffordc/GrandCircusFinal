@@ -1,4 +1,5 @@
-﻿using GCFinal.Domain.Models.BinPackingModels;
+﻿using GCFinal.Domain.Models;
+using GCFinal.Domain.Models.BinPackingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace GCFinal.Domain.Algorithms
             /// <param name="container">The container to pack items into.</param>
             /// <param name="items">The items to pack.</param>
             /// <returns>The bin packing result.</returns>
-            public AlgorithmPackingResult Run(Container container, List<Item> items)
+            public AlgorithmPackingResult Run(Container container, List<SuitcaseItem> items)
             {
                 Initialize(container, items);
                 ExecuteIterations(container);
@@ -56,8 +57,8 @@ namespace GCFinal.Domain.Algorithms
 
             #region Private Variables
 
-            private List<Item> itemsToPack;
-            private List<Item> itemsPackedInOrder;
+            private List<SuitcaseItem> itemsToPack;
+            private List<SuitcaseItem> itemsPackedInOrder;
             private List<Layer> layers;
             private ContainerPackingResult result;
 
@@ -525,31 +526,30 @@ namespace GCFinal.Domain.Algorithms
             /// <summary>
             /// Initializes everything.
             /// </summary>
-            private void Initialize(Container container, List<Item> items)
+            private void Initialize(Container container, List<SuitcaseItem> items)
             {
-                itemsToPack = new List<Item>();
-                itemsPackedInOrder = new List<Item>();
+                itemsToPack = new List<SuitcaseItem>();
+                itemsPackedInOrder = new List<SuitcaseItem>();
                 result = new ContainerPackingResult();
 
                 // The original code uses 1-based indexing everywhere. This fake entry is added to the beginning
                 // of the list to make that possible.
-                itemsToPack.Add(new Item("", 0, 0, 0, 0));
+                itemsToPack.Add(new SuitcaseItem("", 0, 0, 0, 0));
 
                 layers = new List<Layer>();
                 itemsToPackCount = 0;
 
-                foreach (Item item in items)
+                foreach (SuitcaseItem item in items)
                 {
                     for (int i = 1; i <= item.Quantity; i++)
                     {
-                        Item newItem = new Item(item.Name, item.Dim1, item.Dim2, item.Dim3, item.Quantity);
-                        itemsToPack.Add(newItem);
+                        itemsToPack.Add(item);
                     }
 
                     itemsToPackCount += item.Quantity;
                 }
 
-                itemsToPack.Add(new Item("", 0, 0, 0, 0));
+                itemsToPack.Add(new SuitcaseItem("", 0, 0, 0, 0));
 
                 totalContainerVolume = container.Length * container.Height * container.Width;
                 totalItemVolume = 0.0M;

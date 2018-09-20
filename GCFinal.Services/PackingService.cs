@@ -1,4 +1,5 @@
 ﻿using GCFinal.Domain.Algorithms;
+using GCFinal.Domain.Models;
 using GCFinal.Domain.Models.BinPackingModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace GCFinal.Services
         /// <param name="itemsToPack">The items to pack.</param>
         /// <param name="algorithmTypeIDs">The list of algorithm type IDs to use for packing.</param>
         /// <returns>A container packing result with lists of the packed and unpacked items.</returns>
-        public static List<ContainerPackingResult> Pack(List<Container> containers, List<Item> itemsToPack, List<int> algorithmTypeIDs)
+        public static List<ContainerPackingResult> Pack(List<Container> containers, List<SuitcaseItem> itemsToPack, List<int> algorithmTypeIDs)
         {
             Object sync = new Object { };
             List<ContainerPackingResult> result = new List<ContainerPackingResult>();
@@ -35,11 +36,11 @@ namespace GCFinal.Services
 
                     // Until I rewrite the algorithm with no side effects, we need to clone the item list
                     // so the parallel updates don't interfere with each other.
-                    List<Item> items = new List<Item>();
+                    var items = new List<SuitcaseItem>();
 
                     itemsToPack.ForEach(item =>
                     {
-                        items.Add(new Item(item.Name, item.Dim1, item.Dim2, item.Dim3, item.Quantity));
+                        items.Add(item);
                     });
 
                     Stopwatch stopwatch = new Stopwatch();
