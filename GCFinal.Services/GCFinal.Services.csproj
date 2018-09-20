@@ -55,8 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContainerService.cs" />
-    <Compile Include="SuitcasePackingService.cs" />
     <Compile Include="PackingService.cs" />
     <Compile Include="RestSharpJsonNetSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

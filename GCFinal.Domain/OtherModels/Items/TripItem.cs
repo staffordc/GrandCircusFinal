@@ -32,13 +32,5 @@
 
         public decimal Height { get; set; }
 
-        // TODO: how to tell if an item is for precipitation?
-
-        // Maybe the original idea of 3 db tables was good...
-        /*
-         * Items
-         * DailyItems (relates to items, includes additional columns for daily slot?)
-         * TripItems (relates to items, includes columns that help define when it should be included like Temp or Precip...?)
-         */
     }
 }

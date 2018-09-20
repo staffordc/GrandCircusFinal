@@ -18,58 +18,58 @@ namespace GCFinal.Services
         /// <param name="itemsToPack">The items to pack.</param>
         /// <param name="algorithmTypeIDs">The list of algorithm type IDs to use for packing.</param>
         /// <returns>A container packing result with lists of the packed and unpacked items.</returns>
-        public static List<ContainerPackingResult> Pack(List<Container> containers, List<SuitcaseItem> itemsToPack, List<int> algorithmTypeIDs)
+        public static List<ContainerPackingResult> Pack(Container containers, List<Item> itemsToPack, List<int> algorithmTypeIDs)
         {
             Object sync = new Object { };
             List<ContainerPackingResult> result = new List<ContainerPackingResult>();
 
-            Parallel.ForEach(containers, container =>
+            //Parallel.ForEach(containers, container =>
+            //{
+            ContainerPackingResult containerPackingResult = new ContainerPackingResult();
+            containerPackingResult.ContainerID = containers.Id;
+            containerPackingResult.ContainerName = containers.Name;
+            containerPackingResult.Weight = containers.Weight;
+
+            Parallel.ForEach(algorithmTypeIDs, algorithmTypeID =>
             {
-                ContainerPackingResult containerPackingResult = new ContainerPackingResult();
-                containerPackingResult.ContainerID = container.Id;
-                containerPackingResult.ContainerName = container.Name;
-                containerPackingResult.Weight = container.Weight;
+                IPackingAlgorithm algorithm = PackingService.GetPackingAlgorithmFromTypeID(algorithmTypeID);
 
-                Parallel.ForEach(algorithmTypeIDs, algorithmTypeID =>
+                // Until I rewrite the algorithm with no side effects, we need to clone the item list
+                // so the parallel updates don't interfere with each other.
+                List<Item> items = new List<Item>();
+
+                itemsToPack.ForEach(item =>
                 {
-                    IPackingAlgorithm algorithm = PackingService.GetPackingAlgorithmFromTypeID(algorithmTypeID);
-
-                    // Until I rewrite the algorithm with no side effects, we need to clone the item list
-                    // so the parallel updates don't interfere with each other.
-                    var items = new List<SuitcaseItem>();
-
-                    itemsToPack.ForEach(item =>
-                    {
-                        items.Add(item);
-                    });
-
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    AlgorithmPackingResult algorithmResult = algorithm.Run(container, items);
-                    stopwatch.Stop();
-
-                    algorithmResult.PackTimeInMilliseconds = stopwatch.ElapsedMilliseconds;
-
-                    decimal containerVolume = container.Length * container.Width * container.Height;
-                    decimal itemVolumePacked = algorithmResult.PackedItems.Sum(i => i.Volume);
-                    decimal itemVolumeUnpacked = algorithmResult.UnpackedItems.Sum(i => i.Volume);
-
-                    algorithmResult.PercentContainerVolumePacked = Math.Round(itemVolumePacked / containerVolume * 100, 2);
-                    algorithmResult.PercentItemVolumePacked = Math.Round(itemVolumePacked / (itemVolumePacked + itemVolumeUnpacked) * 100, 2);
-
-                    lock (sync)
-                    {
-                        containerPackingResult.AlgorithmPackingResults.Add(algorithmResult);
-                    }
+                    items.Add(new Item(item.Name, item.Dim1, item.Dim2, item.Dim3, item.Quantity));
                 });
 
-                containerPackingResult.AlgorithmPackingResults = containerPackingResult.AlgorithmPackingResults.OrderBy(r => r.AlgorithmName).ToList();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                AlgorithmPackingResult algorithmResult = algorithm.Run(containers, items);
+                stopwatch.Stop();
+
+                algorithmResult.PackTimeInMilliseconds = stopwatch.ElapsedMilliseconds;
+
+                decimal containerVolume = containers.Length * containers.Width * containers.Height;
+                decimal itemVolumePacked = algorithmResult.PackedItems.Sum(i => i.Volume);
+                decimal itemVolumeUnpacked = algorithmResult.UnpackedItems.Sum(i => i.Volume);
+
+                algorithmResult.PercentContainerVolumePacked = Math.Round(itemVolumePacked / containerVolume * 100, 2);
+                algorithmResult.PercentItemVolumePacked = Math.Round(itemVolumePacked / (itemVolumePacked + itemVolumeUnpacked) * 100, 2);
 
                 lock (sync)
                 {
-                    result.Add(containerPackingResult);
+                    containerPackingResult.AlgorithmPackingResults.Add(algorithmResult);
                 }
             });
+
+            containerPackingResult.AlgorithmPackingResults = containerPackingResult.AlgorithmPackingResults.OrderBy(r => r.AlgorithmName).ToList();
+
+            lock (sync)
+            {
+                result.Add(containerPackingResult);
+            }
+            //});
 
             return result;
         }
