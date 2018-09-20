@@ -55,7 +55,6 @@
     <Compile Include="Algorithms\AlgorithmType.cs" />
     <Compile Include="Algorithms\EB_AFIT.cs" />
     <Compile Include="Algorithms\IPackingAlgorithm.cs" />
-    <Compile Include="Data\IContainerService.cs" />
     <Compile Include="Data\IWeatherService.cs" />
     <Compile Include="Models\Astro.cs" />
     <Compile Include="Models\BinPackingModels\AlgorithmPackingResult.cs" />
@@ -68,8 +67,6 @@
     <Compile Include="Models\Forecast.cs" />
     <Compile Include="Models\ForecastDay.cs" />
     <Compile Include="Models\Hour.cs" />
-    <Compile Include="Models\SuitcaseItem.cs" />
-    <Compile Include="Models\SuitcasePackingResult.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="OtherModels\Items\TripItem.cs" />
     <Compile Include="Models\Location.cs" />
