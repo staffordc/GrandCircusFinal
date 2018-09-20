@@ -1,4 +1,5 @@
-﻿using GCFinal.Domain.Models.BinPackingModels;
+﻿using GCFinal.Domain.Models;
+using GCFinal.Domain.Models.BinPackingModels;
 using System.Collections.Generic;
 
 namespace GCFinal.Domain.Algorithms
@@ -11,6 +12,6 @@ namespace GCFinal.Domain.Algorithms
         /// <param name="container">The container.</param>
         /// <param name="items">The items to pack.</param>
         /// <returns>The algorithm packing result.</returns>
-        AlgorithmPackingResult Run(Container container, List<Item> items);
+        AlgorithmPackingResult Run(Container container, List<SuitcaseItem> items);
     }
 }

@@ -95,13 +95,17 @@ namespace GCFinal.MVC.Controllers
                         : vm.Historicals,
                     model.Duration);
 
-                List<Item> itemsToContainer = new List<Item>();
+                var itemsToContainer = new List<SuitcaseItem>();
                 foreach (var item in itemsToPack)
                 {
-                    itemsToContainer.Add(new Item(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity)));
+                    itemsToContainer.Add(new SuitcaseItem(item.Name, item.Height, item.Length, item.Width, Convert.ToInt32(item.Quantity))
+                    {
+                        Weight = item.Weight
+                    });
                 }
 
                 var result = _suitcasePackingService.Pack(itemsToContainer);
+                
                 vm.ContainerPackingResults = result.Items;
                 vm.TotalWeightInLbs = result.GetTotalWeight() * 0.0625M; //converts weight in ounces to pounds
                 vm.PackingItems = itemsToPack;

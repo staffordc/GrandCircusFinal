@@ -8,8 +8,8 @@ namespace GCFinal.Domain.Models.BinPackingModels
     {
         public AlgorithmPackingResult()
         {
-            this.PackedItems = new List<Item>();
-            this.UnpackedItems = new List<Item>();
+            this.PackedItems = new List<SuitcaseItem>();
+            this.UnpackedItems = new List<SuitcaseItem>();
         }
 
         [DataMember]
@@ -22,7 +22,7 @@ namespace GCFinal.Domain.Models.BinPackingModels
         public bool IsCompletePack { get; set; }
 
         [DataMember]
-        public List<Item> PackedItems { get; set; }
+        public List<SuitcaseItem> PackedItems { get; set; }
 
         [DataMember]
         public long PackTimeInMilliseconds { get; set; }
@@ -34,6 +34,6 @@ namespace GCFinal.Domain.Models.BinPackingModels
         public decimal PercentItemVolumePacked { get; set; }
 
         [DataMember]
-        public List<Item> UnpackedItems { get; set; }
+        public List<SuitcaseItem> UnpackedItems { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace GCFinal.Services
             this.containerService = containerService ?? throw new ArgumentNullException(nameof(containerService));
         }
 
-        public SuitcasePackingResult Pack(IEnumerable<Item> items)
+        public SuitcasePackingResult Pack(IEnumerable<SuitcaseItem> items)
         {
             var result = new SuitcasePackingResult();
             var containers = this.containerService.GetContainers().OrderBy(c => c.Volume);
