@@ -3,6 +3,8 @@ using GCFinal.Domain.Models.Items;
 using GCFinal.Domain.Models.PackingModels;
 using System;
 using System.Linq;
+using System.Web.ModelBinding;
+using GCFinal.Domain.Models;
 
 namespace GCFinal.Services
 {
@@ -12,7 +14,18 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public IQueryable<PackingItem> PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration)
+        public void CreateTrip(Trip trip)
+        {
+            db.Trips.Add(trip);
+        }
+
+        public IQueryable<PackingItem> GetPackedItems()
+        {
+            int tripId = db.Trips.Max(x => x.Id);
+            return db.PackingItems.Where(x => x.TripId == tripId);
+        }
+
+        public void PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration)
         {
             var clothes = GetItemsToPack(tempAvg, rainAvg, windAvg);
             if (duration <= 7)
@@ -93,7 +106,7 @@ namespace GCFinal.Services
                 }
             }
             db.SaveChanges();
-            return db.PackingItems;
+            
         }
 
         public void EmptyPackingItems()

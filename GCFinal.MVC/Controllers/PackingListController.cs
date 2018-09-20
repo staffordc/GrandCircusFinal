@@ -56,7 +56,9 @@ namespace GCFinal.MVC.Controllers
 
         private IEnumerable<PackingItem> GetPackingItems(WeatherModel model, int duration)
         {
-            return this._tripPackingService.PackItems(model.DailyAvgTemp, model.AvgPrecip, model.AvgWind, Convert.ToDecimal(duration)).ToList();
+            _tripPackingService
+                .PackItems(model.DailyAvgTemp, model.AvgPrecip, model.AvgWind, Convert.ToDecimal(duration));
+            return this._tripPackingService.GetPackedItems().ToList();
         }
 
         public async Task<ActionResult> GetWeatherObject(SearchModel model)
@@ -64,7 +66,13 @@ namespace GCFinal.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var vm = new WeatherViewModel();
-
+                var trip = new Trip()
+                {
+                    Location = model.Location,
+                    StartDate = model.StartDate,
+                    Duration = model.Duration
+                };
+                _tripPackingService.CreateTrip(trip);
                 var historicalWeather = await _weatherClient.GetHistoricalWeather(model.Location, model.StartDate, model.Duration);
                 var cityName = historicalWeather.Select(x => x.Location).Select(x => x.Name).Distinct().FirstOrDefault();
                 var regionName = historicalWeather.Select(x => x.Location).Select(x => x.Region).Distinct().FirstOrDefault();
