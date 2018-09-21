@@ -1,87 +1,151 @@
 ﻿@model GCFinal.MVC.Models.WeatherViewModel
 
 @{
+    /**/
+
     ViewBag.Title = "Result";
 }
 
 <h2>Here are your results for @Model.CityName, @Model.RegionName during @Model.StartDate and @Model.EndDate!</h2>
 <p>Based on historical data from the past three years</p>
-<table class="table">
-    <tr>
-        <th>
-            Daily Max Temp (&#8457;) 
-        </th>
-        <th>
-            Daily Min Temp (&#8457;)
-        </th>
-        <th>
-            Daily Avg Temp (&#8457;)
-        </th>
-        <th>
-            Avg Precip (mm)  
-        </th>
-        <th>
-            Avg Wind Speed (Mph)
-        </th>
-        <th>
-            Avg Humidity %   
-        </th>
-    </tr>
-    @if(Model.Forecasts != null)
-    { 
-        <tr>
-            <td>@Html.DisplayFor(item => item.Forecasts.DailyMaxTemp)</td>
-            <td>@Html.DisplayFor(item => item.Forecasts.DailyMinTemp)</td>
-            <td>@Html.DisplayFor(item => item.Forecasts.DailyAvgTemp)</td>
-            <td>@Html.DisplayFor(item => item.Forecasts.AvgPrecip)</td>
-            <td>@Html.DisplayFor(item => item.Forecasts.AvgWind)</td>
-            <td>@Html.DisplayFor(item => item.Forecasts.AvgHumidity)</td>
-        </tr>
+@if (Model.Forecasts != null)
+{
+    <div>
+        <div class="container" style="background-color:gray"<h2>Forecast Data</h2>
+    <div class="row">
+    <div class="card col-sm" style="width: 15rem">
+    <h5 class="card-title" style="text-align:center">Daily Max Temp (&#8457)</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.DailyMaxTemp)
+
+    </div>
+    </div>
+    <div class="card col-sm" style="width: 15rem">
+    <h5 class="card-title" style="text-align:center">Daily Min Temp (&#8457)</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.DailyMinTemp)
+
+    </div>
+    </div>
+    <div class="card col-sm" style="width: 15rem">
+        <h5 class="card-title" style="text-align:center">Daily Avg Temp (&#8457)</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.DailyAvgTemp)
+
+    </div>
+    </div>
+    <div class="card col-sm" style="width: 15rem">
+    <h5 class="card-title" style="text-align:center">Daily Avg Precip (mm)</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.AvgPrecip)
+
+    </div>
+    </div>
+    <div class="card col-sm" style="width: 15rem">
+    <h5 class="card-title" style="text-align:center">Daily Avg Wind Speed (MpH)</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.AvgWind)
+
+    </div>
+    </div>
+    <div class="card col-sm" style="width: 15rem">
+    <h5 class="card-title" style="text-align:center">Daily Avg Humidity %</h5>
+    <div class="card-body" style="text-align:center">
+
+    @Html.DisplayFor(item => item.Forecasts.AvgHumidity)
+
+    </div>
+    </div>
+    </div>
+    </div>
     }
-    <tr>
+<div class="container" style="background-color:gray"<h2>Historical Data</h2>
+    <div class="row">
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Max Temp (&#8457)</h5>
+            <div class="card-body" style="text-align:center">
 
-        <td>@Html.DisplayFor(item => item.Historicals.DailyMaxTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.DailyMinTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.DailyAvgTemp)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgPrecip)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgWind)</td>
-        <td>@Html.DisplayFor(item => item.Historicals.AvgHumidity)</td>
+@Html.DisplayFor(item => item.Historicals.DailyMaxTemp)
 
-    </tr>
-</table >
+            </div>
+        </div>
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Min Temp (&#8457)</h5>
+            <div class="card-body" style="text-align:center">
 
-<h3>We think that you should bring these items!</h3>
-<br/>
-<table class="table">
-    
-    <tr>
-        <th>Quantity</th>
-        <th>Items</th>
-    </tr>
+@Html.DisplayFor(item => item.Historicals.DailyMinTemp)
 
-    @foreach (var item in Model.PackingItems)
-    {
-        <tr>
-            <td>@item.Quantity</td>
-            <td>@item.Name</td>
-        </tr>
-    }
-</table>
-<p>The total weight for your luggage is @Html.DisplayFor(item => item.TotalWeightInLbs)!</p>
+            </div>
+        </div>
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Avg Temp (&#8457)</h5>
+            <div class="card-body" style="text-align:center">
+
+@Html.DisplayFor(item => item.Historicals.DailyAvgTemp)
+
+            </div>
+        </div>
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Avg Precip (mm)</h5>
+            <div class="card-body" style="text-align:center">
+
+@Html.DisplayFor(item => item.Historicals.AvgPrecip)
+
+            </div>
+        </div>
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Avg Wind (MpH)</h5>
+            <div class="card-body" style="text-align:center">
+
+@Html.DisplayFor(item => item.Historicals.AvgWind)
+
+            </div>
+        </div>
+        <div class="card col-sm" style="width: 15rem">
+            <h5 class="card-title" style="text-align:center">Daily Avg Humidity %</h5>
+            <div class="card-body" style="text-align:center">
+
+@Html.DisplayFor(item => item.Historicals.AvgHumidity)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<br />
+<h3>
+    <p>The total weight for your luggage is @Html.DisplayFor(item => item.TotalWeightInLbs) lbs</p>
     @foreach (var result in Model.ContainerPackingResults)
     {
-        <p>@result.ContainerName</p>
-        foreach (var item in result.AlgorithmPackingResults)
-        {
-            <p>@item.IsCompletePack IsCompletePack</p>
-            <p>@item.PercentContainerVolumePacked % of container packed</p>
-            <p>@item.PercentItemVolumePacked % of items packed</p>
-            <p>@item.PackTimeInMilliseconds packed time</p>
-            
-            foreach (var thing in item.UnpackedItems)
-            {
-                <p>@thing.Name things not packed</p>
-                <p>@thing.Quantity quantity</p>
-            }
-        }
+        <p>A @result.ContainerName should fit it all</p>
     }
+</h3>
+<h4>We think that you should bring these items!</h4>
+<h2>
+    <div class="container">
+
+
+        @foreach (var item in Model.PackingItems)
+        {
+
+            <span class="badge badge-pill badge-secondary">
+                @item.Quantity @item.Name
+            </span>
+
+
+
+            <!--<td>@item.Quantity</td>-->
+            <!--<td>@item.Name</td>-->
+        }
+    </div>
+</h2>
+
