@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using GCFinal.Domain.Models.BinPackingModels;
 using GCFinal.Domain.Models.PackingModels;
+using System.Collections.Generic;
 
 namespace GCFinal.MVC.Models
 {
     public class WeatherViewModel
     {
-        public decimal DailyMaxTemp { get; set; }
-        public decimal DailyMinTemp { get; set; }
-        public decimal DailyAvgTemp { get; set; }
-        public decimal AvgWind { get; set; }
-        public decimal AvgPrecip { get; set; }
-        public decimal AvgHumidity { get; set; }
-        public List<PackingItem> PackingItems { get; set; }
+        public WeatherModel Forecasts { get; set; }
+        public WeatherModel Historicals { get; set; }
+        public IEnumerable<PackingItem> PackingItems { get; set; }
+        public IEnumerable<ContainerPackingResult> ContainerPackingResults { get; set; }
+        public decimal TotalWeightInLbs { get; set; }
+        public string CityName { get; set; }
+        public string RegionName { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
     }
 }

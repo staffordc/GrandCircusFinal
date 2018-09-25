@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCFinal.Data", "GCFinal.Data\GCFinal.Data.csproj", "{010E1D7F-6B57-4E00-A68E-0F67FB3775D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCFinal.MVC", "GCFinal.MVC\GCFinal.MVC.csproj", "{CB9B3CF7-9FA1-41E5-AEED-470F2A2BFF61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3198B5FA-BF37-4ED1-B7D6-A903D11C97AF} = {3198B5FA-BF37-4ED1-B7D6-A903D11C97AF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCFinal.MVC.Tests", "GCFinal.MVC.Tests\GCFinal.MVC.Tests.csproj", "{BEE7402C-F814-41A7-9921-ABB5E3765188}"
 EndProject

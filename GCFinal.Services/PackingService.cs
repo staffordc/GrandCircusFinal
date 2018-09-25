@@ -1,146 +1,95 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using GCFinal.Domain.Data;
-//using GCFinal.Domain.Models.PackingModels;
-//using GCFinal.Domain.Models.Items;
+﻿using GCFinal.Domain.Algorithms;
+using GCFinal.Domain.Models;
+using GCFinal.Domain.Models.BinPackingModels;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
-//namespace GCFinal.Services
-//{
-//    public class PackingService : IPackingService
-//    {
-//        // this defines a subset of slots that are used for picking daily outfits
-//        private static readonly ISet<ItemSlot> SlotsForOutfits = new HashSet<ItemSlot>
-//        {
-//            ItemSlot.TopOuter,
-//            ItemSlot.Top,
-//            ItemSlot.TopInner,
-//            ItemSlot.Bottom,
-//            ItemSlot.BottomInner,
-//            ItemSlot.FeetInner,
-//            ItemSlot.Feet
-//        };
+namespace GCFinal.Services
+{
+    public static class PackingService
+    {
+        /// <summary>
+        /// Attempts to pack the specified containers with the specified items using the specified algorithms.
+        /// </summary>
+        /// <param name="containers">The list of containers to pack.</param>
+        /// <param name="itemsToPack">The items to pack.</param>
+        /// <param name="algorithmTypeIDs">The list of algorithm type IDs to use for packing.</param>
+        /// <returns>A container packing result with lists of the packed and unpacked items.</returns>
+        public static List<ContainerPackingResult> Pack(Container containers, List<Item> itemsToPack, List<int> algorithmTypeIDs)
+        {
+            Object sync = new Object { };
+            List<ContainerPackingResult> result = new List<ContainerPackingResult>();
 
-//        private readonly IItemRepository itemRepository;
+            //Parallel.ForEach(containers, container =>
+            //{
+            ContainerPackingResult containerPackingResult = new ContainerPackingResult();
+            containerPackingResult.ContainerID = containers.Id;
+            containerPackingResult.ContainerName = containers.Name;
+            containerPackingResult.Weight = containers.Weight;
 
-//        public PackingService(IItemRepository itemRepository)
-//        {
-//            this.itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
-//        }
+            Parallel.ForEach(algorithmTypeIDs, algorithmTypeID =>
+            {
+                IPackingAlgorithm algorithm = PackingService.GetPackingAlgorithmFromTypeID(algorithmTypeID);
 
+                // Until I rewrite the algorithm with no side effects, we need to clone the item list
+                // so the parallel updates don't interfere with each other.
+                List<Item> items = new List<Item>();
 
-//        //returns all items to be packed
-//        public IEnumerable<PackingItem> GetItems(IEnumerable<DayInfo> days)
-//        {
-//            var dailyItems = this.GetDailyItems(days);
-//            var tripItems = this.GetTripItems(days);
+                itemsToPack.ForEach(item =>
+                {
+                    items.Add(new Item(item.Name, item.Dim1, item.Dim2, item.Dim3, item.Quantity));
+                });
 
-//            return dailyItems.Concat(tripItems).ToList();
-//        }
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                AlgorithmPackingResult algorithmResult = algorithm.Run(containers, items);
+                stopwatch.Stop();
 
+                algorithmResult.PackTimeInMilliseconds = stopwatch.ElapsedMilliseconds;
 
-//        //logic to get clothing per day based on weather
-//        public IEnumerable<PackingItem> GetDailyItems(IEnumerable<DayInfo> days)
-//        {
-//            var dailyItems = this.itemRepository.GetDailyItems();
-//            var dailyItemsBySlot = dailyItems.ToLookup(k => k.Slot);
-//            IList<PackingItem> itemsToPack = new List<PackingItem>();
-//            foreach (var day in days)
-//            {
-//                foreach (var slot in SlotsForOutfits)
-//                {
-//                    // skip any slots that don't exist in the data - TODO this might be problematic!
-//                    if (!dailyItemsBySlot.Contains(slot))
-//                    {
-//                        continue;
-//                    }
+                decimal containerVolume = containers.Length * containers.Width * containers.Height;
+                decimal itemVolumePacked = algorithmResult.PackedItems.Sum(i => i.Volume);
+                decimal itemVolumeUnpacked = algorithmResult.UnpackedItems.Sum(i => i.Volume);
 
-//                    var itemsForSlot = dailyItemsBySlot[slot];
-//                    var isSlotRequired = slot != ItemSlot.TopOuter; // TODO: metadata for slots IsRequired?
-//                    var item = this.GetItemForSlot(itemsForSlot, day.Temperature, isSlotRequired);
-//                    if (item != null)
-//                    {
-//                        itemsToPack.Add(item);
-//                    }
-//                    else if (isSlotRequired)
-//                    {
-//                        // TODO: we have reached an error condition - a required slot is null!
-//                        // log, throw an exception, whatever makes sense for your application
-//                    }
-//                }
-//            }
+                algorithmResult.PercentContainerVolumePacked = Math.Round(itemVolumePacked / containerVolume * 100, 2);
+                algorithmResult.PercentItemVolumePacked = Math.Round(itemVolumePacked / (itemVolumePacked + itemVolumeUnpacked) * 100, 2);
 
-//            return itemsToPack;
-//        }
+                lock (sync)
+                {
+                    containerPackingResult.AlgorithmPackingResults.Add(algorithmResult);
+                }
+            });
 
-//        public PackingItem GetItemForSlot(IEnumerable<Item> itemsForSlot, Temperature targetTemperature, bool isRequired)
-//        {
-//            // TODO: this algorithm is untested and a bit janky -I tried to work from the "most extreme" to mild, depending on whether the target temp was more on the warm or cold side.
-//            // write your own way to "pick an item for a slot" based on the target temp
-//            // suggested implementations:
-//            // * target temp if exists, otherwise one step colder, or one step hotter, or 2 steps colder, or 2 steps hotter, etc.
-//            // * start at the "hottest" or "coldest" available item and go up/down the list til you get the "closest" item
-//            // * some other custom "how do I pick the most applicable piece?"
-//            bool isColdFirst = targetTemperature <= Temperature.Mild;
+            containerPackingResult.AlgorithmPackingResults = containerPackingResult.AlgorithmPackingResults.OrderBy(r => r.AlgorithmName).ToList();
 
-//            Item chosen = null;
-//            if (isColdFirst)
-//            {
-//                var sorted = itemsForSlot.OrderByDescending(i => i.Temperature);
-//                foreach (var item in sorted)
-//                {
-//                    if (item.Temperature > targetTemperature)
-//                    {
-//                        continue;
-//                    }
+            lock (sync)
+            {
+                result.Add(containerPackingResult);
+            }
+            //});
 
-//                    if (!isRequired && item.Temperature > Temperature.Mild)
-//                    {
-//                        break;
-//                    }
+            return result;
+        }
 
-//                    chosen = item;
-//                }
-//            }
-//            else
-//            {
-//                var sorted = itemsForSlot.OrderBy(i => i.Temperature);
-//                foreach (var item in sorted)
-//                {
-//                    if (item.Temperature < targetTemperature)
-//                    {
-//                        continue;
-//                    }
+        /// <summary>
+        /// Gets the packing algorithm from the specified algorithm type ID.
+        /// </summary>
+        /// <param name="algorithmTypeID">The algorithm type ID.</param>
+        /// <returns>An instance of a packing algorithm implementing AlgorithmBase.</returns>
+        /// <exception cref="System.Exception">Invalid algorithm type.</exception>
+        public static IPackingAlgorithm GetPackingAlgorithmFromTypeID(int algorithmTypeID)
+        {
+            switch (algorithmTypeID)
+            {
+                case (int)AlgorithmType.EB_AFIT:
+                    return new EB_AFIT();
 
-//                    if (!isRequired && item.Temperature <= Temperature.Mild)
-//                    {
-//                        break;
-//                    }
-
-//                    chosen = item;
-//                }
-//            }
-
-//            return chosen != null
-//                ? new PackingItem
-//                {
-//                    Name = chosen.Name,
-//                    Weight = chosen.Weight,
-//                    Length = chosen.Length,
-//                    Width = chosen.Width,
-//                    Height = chosen.Height,
-//                }
-//                : null;
-//        }
-
-//        public IEnumerable<PackingItem> GetTripItems(IEnumerable<DayInfo> days)
-//        {
-//            var tripItems = this.itemRepository.GetTripItems();
-//            IList<PackingItem> itemsToPack = new List<PackingItem>();
-
-//            // TODO: implement trip item selection here; afaik you just need to get the trip-level items for Temperature.Cold and any that are Precip == true
-
-//            return itemsToPack;
-//        }
-//    }
-//}
+                default:
+                    throw new Exception("Invalid algorithm type.");
+            }
+        }
+    }
+}

@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,16 @@
     <Compile Include="GCFinalInitalizer.cs" />
     <Compile Include="Maps\ItemMap.cs" />
     <Compile Include="Maps\PackingItemMap.cs" />
+    <Compile Include="Maps\TripMap.cs" />
+    <Compile Include="Migrations\201809201828095_InitialCreate.cs" />
+    <Compile Include="Migrations\201809201828095_InitialCreate.Designer.cs">
+      <DependentUpon>201809201828095_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809211339520_Added trips.cs" />
+    <Compile Include="Migrations\201809211339520_Added trips.Designer.cs">
+      <DependentUpon>201809211339520_Added trips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +74,14 @@
       <Project>{3F20FF59-EE1E-41AA-86E5-8A1FC644B3B3}</Project>
       <Name>GCFinal.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809201828095_InitialCreate.resx">
+      <DependentUpon>201809201828095_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809211339520_Added trips.resx">
+      <DependentUpon>201809211339520_Added trips.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

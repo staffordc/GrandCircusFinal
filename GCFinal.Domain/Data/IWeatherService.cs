@@ -7,6 +7,7 @@ namespace GCFinal.Domain.Data
 {
     public interface IWeatherService
     {
-        Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration);
+        Task<RootObject> GetHistoricalAsync(string location, DateTime startDate, int duration);
+        Task<RootObject> GetForecastAsync(string location, int duration);
     }
 }

@@ -2,7 +2,21 @@
 {
     public class PackingItem
     {
+        public PackingItem()
+        {
+
+        }
+
+        public PackingItem(decimal weight, decimal quantity)
+        {
+            Weight = weight;
+            Quantity = quantity;
+            TotalWeight = weight * quantity;
+        }
+
         public int Id { get; set; }
+        public int TripId { get; set; }
+        public virtual Trip Trip { get; set; }
 
         public string Name { get; set; }
 
@@ -15,5 +29,8 @@
         public decimal Height { get; set; }
 
         public decimal Quantity { get; set; }
+
+        public decimal TotalWeight { get; set; }
+
     }
 }

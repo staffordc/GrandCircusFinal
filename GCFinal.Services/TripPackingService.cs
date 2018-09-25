@@ -1,4 +1,5 @@
 ﻿using GCFinal.Data;
+using GCFinal.Domain.Models;
 using GCFinal.Domain.Models.Items;
 using GCFinal.Domain.Models.PackingModels;
 using System;
@@ -12,7 +13,20 @@ namespace GCFinal.Services
         //Daily Items
         //Trip items
 
-        public IQueryable<PackingItem> PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration)
+        public int CreateTrip(Trip trip)
+        {
+            db.Trips.Add(trip);
+            db.SaveChanges();
+            return trip.Id;
+        }
+
+        public IQueryable<PackingItem> GetPackedItems(int tripId)
+        {
+
+            return db.PackingItems.Where(x => x.TripId == tripId);
+        }
+
+        public void PackItems(decimal tempAvg, decimal rainAvg, decimal windAvg, decimal duration, int tripId)
         {
             var clothes = GetItemsToPack(tempAvg, rainAvg, windAvg);
             if (duration <= 7)
@@ -21,40 +35,37 @@ namespace GCFinal.Services
                 {
                     if (cloth.IsBulk)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, Math.Ceiling(duration / 3))
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = Math.Ceiling(duration / 3)
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsDaily)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, duration)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = duration
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsEssential)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 1
+                            Width = cloth.Width
                         });
                     }
                 }
@@ -66,59 +77,46 @@ namespace GCFinal.Services
                 {
                     if (cloth.IsBulk)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 3)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 3
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsDaily)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 7)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 7
+                            Width = cloth.Width
                         });
                     }
 
                     if (cloth.IsEssential)
                     {
-                        db.PackingItems.Add(new PackingItem()
+                        db.PackingItems.Add(new PackingItem(cloth.Weight, 1)
                         {
                             Name = cloth.Name,
+                            TripId = tripId,
                             Height = cloth.Height,
                             Length = cloth.Length,
-                            Width = cloth.Width,
-                            Weight = cloth.Weight,
-                            Quantity = 1
+                            Width = cloth.Width
                         });
                     }
                 }
             }
             db.SaveChanges();
-            return db.PackingItems;
+
         }
 
-        public void EmptyPackingItems()
-        {
-            var clothes = db.PackingItems;
-            foreach(var cloth in clothes)
-            {
-                db.PackingItems.Remove(cloth);
-            }
-            db.SaveChanges();
-        }
-
-        public IQueryable<Item> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
+        public IQueryable<TripItem> GetItemsToPack(decimal tempAvg, decimal rainAvg, decimal windAvg)
         {
             var temperature = GetTempEnum(tempAvg);
             bool isPrecipitating = IsPrecipitating(rainAvg);
@@ -142,7 +140,7 @@ namespace GCFinal.Services
             }
         }
 
-        private IQueryable<Item> GetHotClothes(bool isRain)
+        private IQueryable<TripItem> GetHotClothes(bool isRain)
         {
             if (isRain)
             {
@@ -151,7 +149,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Hot == true);
         }
 
-        private IQueryable<Item> GetWarmClothes(bool isRain, bool isWind)
+        private IQueryable<TripItem> GetWarmClothes(bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -166,7 +164,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Warm == true);
         }
 
-        private IQueryable<Item> GetCoolClothes(bool isRain, bool isWind)
+        private IQueryable<TripItem> GetCoolClothes(bool isRain, bool isWind)
         {
             if (isRain)
             {
@@ -181,7 +179,7 @@ namespace GCFinal.Services
             else return db.Items.Where(x => x.Cool == true);
         }
 
-        private IQueryable<Item> GetColdClothes()
+        private IQueryable<TripItem> GetColdClothes()
         {
             return db.Items.Where(x => x.Cold == true);
         }
@@ -211,12 +209,12 @@ namespace GCFinal.Services
                 return Temperature.Hot;
             }
 
-            if (temp >= 65 && temp < 79)
+            if (temp >= 65 && temp < 80)
             {
                 return Temperature.Warm;
             }
 
-            if (temp >= 45 && temp < 64)
+            if (temp >= 45 && temp < 65)
             {
                 return Temperature.Cool;
             }

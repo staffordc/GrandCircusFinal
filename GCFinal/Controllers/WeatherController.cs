@@ -1,11 +1,10 @@
 ﻿using GCFinal.Domain.Data;
-using System.Collections.Generic;
-using System.Web.Http;
+using GCFinal.Domain.Models;
 using GCFinal.Services;
 using System;
-using System.Linq;
-using GCFinal.Domain.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace GCFinal.Controllers
 {
@@ -19,18 +18,27 @@ namespace GCFinal.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ForecastDay>> GetWeatherAsync(string location, DateTime startDate, int duration)
+        public async Task<List<RootObject>> GetWeatherAsync(string location, DateTime startDate, int duration)
         {
             var dateOneYearAgo = startDate.AddYears(-1);
-            var oneYearAgo = await _weatherService.GetWeatherAsync(location, dateOneYearAgo, duration);
+            var oneYearAgo = await _weatherService.GetHistoricalAsync(location, dateOneYearAgo, duration);
             var dateTwoYearsAgo = startDate.AddYears(-2);
-            var twoYearsAgo = await _weatherService.GetWeatherAsync(location, dateTwoYearsAgo, duration);
+            var twoYearsAgo = await _weatherService.GetHistoricalAsync(location, dateTwoYearsAgo, duration);
             var dateThreeYearsAgo = startDate.AddYears(-3);
-            var threeYearsAgo = await _weatherService.GetWeatherAsync(location, dateThreeYearsAgo, duration);
-            List<ForecastDay> items = new List<ForecastDay>();
-            items.AddRange(oneYearAgo);
-            items.AddRange(twoYearsAgo);
-            items.AddRange(threeYearsAgo);
+            var threeYearsAgo = await _weatherService.GetHistoricalAsync(location, dateThreeYearsAgo, duration);
+            List<RootObject> items = new List<RootObject>();
+            items.Add(oneYearAgo);
+            items.Add(twoYearsAgo);
+            items.Add(threeYearsAgo);
+            return items;
+        }
+
+        [HttpGet]
+        public async Task<List<RootObject>> WeatherAsyncNow(string location, int duration)
+        {
+            var Now = await _weatherService.GetForecastAsync(location, duration);
+            List<RootObject> items = new List<RootObject>();
+            items.Add(Now);
             return items;
         }
 
